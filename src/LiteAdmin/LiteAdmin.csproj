@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LiteAdmin.Core\LiteAdmin.Core.csproj" />
-    <ProjectReference Include="..\LiteAdmin.SqlServer\LiteAdmin.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

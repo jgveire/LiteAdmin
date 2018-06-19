@@ -6,9 +6,9 @@
     using Constants;
     using Microsoft.AspNetCore.Http;
 
-    public class ApiCallHandler : HandlerBase
+    public class ApiCallHandler : HandlerBase, IApiCallHandler
     {
-        public Task Handle(HttpContext context)
+        public Task Handle(HttpContext context, PathString remainingPath)
         {
             var statusCode = (int)HttpStatusCode.NotFound;
             var json = GetErrorJson(JsonErrorCode.MethodNotFound, JsonErrorMessage.MethodNotFound);

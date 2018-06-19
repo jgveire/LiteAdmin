@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LiteAdmin.Core\LiteAdmin.Core.csproj" />
+    <ProjectReference Include="..\LiteAdmin\LiteAdmin.csproj" />
   </ItemGroup>
 
 </Project>

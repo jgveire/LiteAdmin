@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
 
-    public class StaticFileHandler : HandlerBase
+    public class StaticFileHandler : HandlerBase, IStaticFileHandler
     {
         public Task Handle(HttpContext context, PathString remainingPath)
         {
