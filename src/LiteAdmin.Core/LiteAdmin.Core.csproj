@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Copyright>Copyright (c) 2017 Veire Solutions</Copyright>
+    <Product>LiteAdmin</Product>
+    <Company>Veire Solutions</Company>
+    <Authors>Veire Solutions</Authors>
+    <Version>0.0.1</Version>
+    <NeutralLanguage>English (United Kingdom)</NeutralLanguage>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
 </Project>

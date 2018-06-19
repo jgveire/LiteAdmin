@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Version>0.0.1</Version>
+    <Company>Veire Solutions</Company>
+    <Authors>Veire Solutions</Authors>
+    <Copyright>Copyright (c) 2018 Veire Solutions</Copyright>
+    <NeutralLanguage>English (United Kingdom)</NeutralLanguage>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="StaticFiles\index.html" />
+    <None Remove="StaticFiles\page-not-found.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="StaticFiles\page-not-found.html" />
+    <EmbeddedResource Include="StaticFiles\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LiteAdmin.Core\LiteAdmin.Core.csproj" />
+    <ProjectReference Include="..\LiteAdmin.SqlServer\LiteAdmin.SqlServer.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -11,7 +11,6 @@
     {
         public string ConnectionString { get; }
 
-        // "Server=tcp:YourServer,1433;Initial Catalog=YourDatabase;Persist Security Info=True;"
         public TableRepository(string connectionString)
         {
             ConnectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
