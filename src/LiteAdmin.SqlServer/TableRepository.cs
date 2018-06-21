@@ -32,9 +32,10 @@
                 var table = new Table(groupedRecord.Key.TableSchema, groupedRecord.Key.TableName);
                 foreach (var columnRecord in groupedRecord)
                 {
-
-                    columnFactory.CreateColumnFromRecord(columnRecord);
+                    var column = columnFactory.CreateColumnFromRecord(columnRecord);
+                    table.Columns.Add(column);
                 }
+                result.Add(table);
             }
 
             return result;
@@ -46,7 +47,7 @@
             using (var connection = new SqlConnection(ConnectionString))
             {
                 var sql = "SELECT C.TABLE_SCHEMA, " +
-                          "	   C.TABLE_CATALOG, " +
+                          "	   C.TABLE_Name, " +
                           "	   C.COLUMN_NAME, " +
                           "	   C.DATA_TYPE, " +
                           "	   CAST(CASE WHEN C.IS_NULLABLE = 'YES' THEN 1 ELSE 0 END AS bit) AS IS_NULLABLE, " +

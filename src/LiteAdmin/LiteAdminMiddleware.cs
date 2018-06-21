@@ -30,7 +30,8 @@
             }
             else if (context.Request.Path.StartsWithSegments("/liteadmin/api", out var remaining))
             {
-                return _apiCallHandler.Handle(context, remaining);
+                _apiCallHandler.Context = context;
+                return _apiCallHandler.Handle(remaining);
             }
             else if (context.Request.Path.StartsWithSegments("/liteadmin", out remaining))
             {

@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace LiteAdmin.Handlers
 {
-    public interface IApiCallHandler
+    public interface IApiCallHandler : IJsonHandler
     {
-        Task Handle(HttpContext context, PathString remainingPath);
+        Task Handle(PathString remainingPath);
     }
 }

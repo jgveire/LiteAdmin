@@ -1,21 +1,57 @@
 ﻿namespace LiteAdmin.Handlers
 {
-    using System.Net;
-    using System.Text;
+    using System;
     using System.Threading.Tasks;
-    using Constants;
+    using Core;
+    using LiteAdmin.Extensions;
     using Microsoft.AspNetCore.Http;
 
-    public class ApiCallHandler : HandlerBase, IApiCallHandler
+    public class ApiCallHandler : JsonHandler, IApiCallHandler
     {
-        public Task Handle(HttpContext context, PathString remainingPath)
+        private readonly ITableCallHandler _tableCallHandler;
+        private readonly ITableRepository _tableRepository;
+
+        public ApiCallHandler(
+            ITableCallHandler tableCallHandler,
+            ITableRepository tableRepository)
         {
-            var statusCode = (int)HttpStatusCode.NotFound;
-            var json = GetErrorJson(JsonErrorCode.MethodNotFound, JsonErrorMessage.MethodNotFound);
-            var bytes = Encoding.UTF8.GetBytes(json);
-            context.Response.StatusCode = statusCode;
-            context.Response.ContentType = ContentTypeProvider.Mappings[".json"];
-            return context.Response.Body.WriteAsync(bytes, 0, bytes.Length);
+            _tableCallHandler = tableCallHandler ?? throw new ArgumentNullException(nameof(tableCallHandler));
+            _tableRepository = tableRepository ?? throw new ArgumentNullException(nameof(tableRepository));
+        }
+
+        public Task Handle(PathString remainingPath)
+        {
+            var tableName = GetTableName(remainingPath);
+            if (!string.IsNullOrEmpty(tableName))
+            {
+                var tables = _tableRepository.GetTables();
+                if (tables.ContaintTable(tableName))
+                {
+                    _tableCallHandler.Context = Context;
+                    return _tableCallHandler.Handle(tableName);
+                }
+            }
+
+            return HttpNotFoundResponse();
+        }
+
+        private string GetTableName(PathString remainingPath)
+        {
+            if (remainingPath.HasValue)
+            {
+                var startIndex = remainingPath.Value.IndexOf('/');
+                var nextIndex = remainingPath.Value.IndexOf('/', startIndex + 1);
+                if (startIndex != -1 && nextIndex != -1)
+                {
+                    return remainingPath.Value.Substring(startIndex + 1, nextIndex - startIndex - 1);
+                }
+                else if (startIndex != -1)
+                {
+                    return remainingPath.Value.Substring(startIndex + 1, remainingPath.Value.Length - startIndex - 1);
+                }
+            }
+
+            return null;
         }
     }
 }
