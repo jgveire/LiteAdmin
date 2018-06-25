@@ -13,6 +13,7 @@
             services.AddTransient<IApiCallHandler, ApiCallHandler>();
             services.AddTransient<IStaticFileHandler, StaticFileHandler>();
             services.AddTransient<ITableCallHandler, TableCallHandler>();
+            services.AddTransient<ISchemaHandler, SchemaHandler>();
             return services;
         }
     }

@@ -9,49 +9,70 @@
     public class ApiCallHandler : JsonHandler, IApiCallHandler
     {
         private readonly ITableCallHandler _tableCallHandler;
+        private readonly ISchemaHandler _schemaHandler;
         private readonly ITableRepository _tableRepository;
 
         public ApiCallHandler(
             ITableCallHandler tableCallHandler,
+            ISchemaHandler schemaHandler,
             ITableRepository tableRepository)
         {
             _tableCallHandler = tableCallHandler ?? throw new ArgumentNullException(nameof(tableCallHandler));
+            _schemaHandler = schemaHandler ?? throw new ArgumentNullException(nameof(schemaHandler));
             _tableRepository = tableRepository ?? throw new ArgumentNullException(nameof(tableRepository));
         }
 
         public Task Handle(PathString remainingPath)
         {
-            var tableName = GetTableName(remainingPath);
-            if (!string.IsNullOrEmpty(tableName))
+            var id = GetIdentifier(remainingPath);
+            var name = GetControllerName(remainingPath);
+            if (string.IsNullOrEmpty(name))
             {
-                var tables = _tableRepository.GetTables();
-                if (tables.ContaintTable(tableName))
-                {
-                    _tableCallHandler.Context = Context;
-                    return _tableCallHandler.Handle(tableName);
-                }
+                return HttpNotFoundResponse();
+            }
+            else if (string.Equals(name, "schema", StringComparison.OrdinalIgnoreCase))
+            {
+                _schemaHandler.Context = Context;
+                return _schemaHandler.Handle();
             }
 
-            return HttpNotFoundResponse();
+            var tables = _tableRepository.GetTables();
+            if (!tables.ContaintTable(name))
+            {
+                return HttpNotFoundResponse();
+            }
+
+            _tableCallHandler.Context = Context;
+            return _tableCallHandler.Handle(name, id);
         }
 
-        private string GetTableName(PathString remainingPath)
+        private string GetControllerName(PathString remainingPath)
         {
             if (remainingPath.HasValue)
             {
-                var startIndex = remainingPath.Value.IndexOf('/');
-                var nextIndex = remainingPath.Value.IndexOf('/', startIndex + 1);
-                if (startIndex != -1 && nextIndex != -1)
+                var items = remainingPath.Value.Split('/', StringSplitOptions.RemoveEmptyEntries);
+                if (items.Length >= 1)
                 {
-                    return remainingPath.Value.Substring(startIndex + 1, nextIndex - startIndex - 1);
-                }
-                else if (startIndex != -1)
-                {
-                    return remainingPath.Value.Substring(startIndex + 1, remainingPath.Value.Length - startIndex - 1);
+                    return items[0];
                 }
             }
 
             return null;
         }
+
+        private string GetIdentifier(PathString remainingPath)
+        {
+            if (remainingPath.HasValue)
+            {
+                var items = remainingPath.Value.Split('/', StringSplitOptions.RemoveEmptyEntries);
+                if (items.Length > 1)
+                {
+                    return items[1];
+                }
+            }
+
+            return null;
+        }
+
     }
 }

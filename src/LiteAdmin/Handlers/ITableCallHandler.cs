@@ -4,6 +4,6 @@ namespace LiteAdmin.Handlers
 {
     public interface ITableCallHandler : IJsonHandler
     {
-        Task Handle(string tableName);
+        Task Handle(string tableName, string id);
     }
 }

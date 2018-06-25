@@ -20,10 +20,10 @@
             {
                 return null;
             }
-            else if (_defaultValue.Equals("(newid())", StringComparison.OrdinalIgnoreCase))
-            {
-                return Guid.NewGuid();
-            }
+            //else if (_defaultValue.Equals("(newid())", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    return Guid.NewGuid();
+            //}
 
             return null;
         }

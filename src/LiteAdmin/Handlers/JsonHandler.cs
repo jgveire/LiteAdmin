@@ -1,5 +1,6 @@
 ﻿namespace LiteAdmin.Handlers
 {
+    using System.Collections.Generic;
     using System.Net;
     using System.Text;
     using System.Threading.Tasks;
@@ -28,6 +29,12 @@
             return Response.Body.WriteAsync(bytes, 0, bytes.Length);
         }
 
+        protected void HttpNoContentResponse()
+        {
+            var statusCode = (int)HttpStatusCode.NoContent;
+            Response.StatusCode = statusCode;
+        }
+
         protected Task JsonResponse(object data)
         {
             var statusCode = (int)HttpStatusCode.OK;
@@ -36,6 +43,11 @@
             Response.StatusCode = statusCode;
             Response.ContentType = ContentTypeProvider.Mappings[".json"];
             return Response.Body.WriteAsync(bytes, 0, bytes.Length);
+        }
+
+        protected Dictionary<string, object> DeserializeJson(string json)
+        {
+            return JsonConvert.DeserializeObject<Dictionary<string, object>>(json, SerializerSettings);
         }
 
         private static JsonSerializerSettings CreateSerializerSettings()
