@@ -40,11 +40,8 @@
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
     <Content Include="src\assets\logo.png" />
-    <Content Include="src\components\HelloWorld.scss" />
-    <Content Include="src\components\HelloWorld.ts" />
     <Content Include="src\components\HelloWorld.vue" />
     <Content Include="src\views\About.vue" />
-    <Content Include="src\views\Home.ts" />
     <Content Include="src\views\Home.vue" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
@@ -57,14 +54,22 @@
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\services\" />
+    <Folder Include="src\store\" />
     <Folder Include="src\views\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\router.ts" />
+    <TypeScriptCompile Include="src\services\ApiService.ts" />
+    <TypeScriptCompile Include="src\services\index.ts" />
+    <TypeScriptCompile Include="src\services\SchemaService.ts" />
     <TypeScriptCompile Include="src\shims-tsx.d.ts" />
     <TypeScriptCompile Include="src\shims-vue.d.ts" />
-    <TypeScriptCompile Include="src\store.ts" />
+    <TypeScriptCompile Include="src\store\ActionTypes.ts" />
+    <TypeScriptCompile Include="src\store\index.ts" />
+    <TypeScriptCompile Include="src\store\MutationTypes.ts" />
+    <TypeScriptCompile Include="src\store\SchemaModule.ts" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
