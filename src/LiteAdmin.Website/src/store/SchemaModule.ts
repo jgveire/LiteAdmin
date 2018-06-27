@@ -3,10 +3,10 @@ import { MutationTree } from 'vuex';
 import { GetterTree } from 'vuex';
 import { ActionContext } from 'vuex';
 import { ActionTree } from 'vuex';
-import { IStoreState } from 'src/store/index';
-import { SchemaService } from 'src/services';
-import * as ActionTypes from 'src/store/ActionTypes';
-import * as MutationTypes from 'src/store/MutationTypes';
+import { IStoreState } from '@/store/index';
+import { SchemaService } from '@/services';
+import * as ActionTypes from '@/store/ActionTypes';
+import * as MutationTypes from '@/store/MutationTypes';
 
 export interface ITable
 {

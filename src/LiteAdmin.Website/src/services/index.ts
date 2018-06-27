@@ -1,1 +1,1 @@
-﻿export { SchemaService } from './SchemaService';
+﻿export { SchemaService } from '@/services/SchemaService';

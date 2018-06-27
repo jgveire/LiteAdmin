@@ -20,7 +20,7 @@ export default class ApiService
     public static httpClient(): AxiosInstance
     {
         const instance: AxiosInstance = Axios.create({
-            baseURL: 'localhost:9000/liteadmin/api',
+            baseURL: 'http://localhost:9000/liteadmin/api/',
             timeout: 5000,
             transformResponse: (data: any): any =>
             {

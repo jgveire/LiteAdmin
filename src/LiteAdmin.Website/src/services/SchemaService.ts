@@ -1,5 +1,5 @@
-﻿import ApiService from './apiService';
-import { ITable } from 'src/store/SchemaModule';
+﻿import ApiService from '@/services/ApiService';
+import { ITable } from '@/store/SchemaModule';
 
 export class SchemaService extends ApiService
 {

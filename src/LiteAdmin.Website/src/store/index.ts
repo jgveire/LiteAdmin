@@ -4,9 +4,9 @@ import { Store } from 'vuex';
 import { MutationTree } from 'vuex';
 import { ActionTree } from 'vuex';
 import { GetterTree } from 'vuex';
-import SchemaModule from 'src/store/SchemaModule';
-import { ISchemaState } from 'src/store/SchemaModule';
-import { ISchemaGetters } from 'src/store/SchemaModule';
+import SchemaModule from '@/store/SchemaModule';
+import { ISchemaState } from '@/store/SchemaModule';
+import { ISchemaGetters } from '@/store/SchemaModule';
 
 Vue.use(Vuex);
 
