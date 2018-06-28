@@ -25,7 +25,8 @@
     <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
     <EnableTypeScript>true</EnableTypeScript>
     <TypeScriptExperimentalDecorators>true</TypeScriptExperimentalDecorators>
-	<StartWebBrowser>false</StartWebBrowser>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <StartWebBrowser>False</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
