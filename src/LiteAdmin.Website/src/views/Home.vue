@@ -1,7 +1,6 @@
 <template>
     <div class="home">
-        <h1>LiteAdmin</h1>
-        <Navigation></Navigation>
+        <h1>LiteAdmin Home</h1>
     </div>
 </template>
 

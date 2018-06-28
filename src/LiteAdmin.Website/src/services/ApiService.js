@@ -11,7 +11,7 @@ var ApiService = /** @class */ (function () {
     }
     ApiService.httpClient = function () {
         var instance = Axios.create({
-            baseURL: 'localhost:9000/liteadmin/api/',
+            baseURL: 'http://localhost:9000/liteadmin/api/',
             timeout: 5000,
             transformResponse: function (data) {
                 if (data && typeof (data) === 'string') {

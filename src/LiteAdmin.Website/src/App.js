@@ -1,16 +1,22 @@
 import * as tslib_1 from "tslib";
-import { Component, Vue } from 'vue-property-decorator';
+import { Vue } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import * as ActionTypes from '@/store/ActionTypes';
+import Navigation from '@/components/Navigation';
 var App = /** @class */ (function (_super) {
     tslib_1.__extends(App, _super);
     function App() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    App.prototype.mounted = function () {
+    App.prototype.created = function () {
         this.$store.dispatch(ActionTypes.getSchema);
     };
     App = tslib_1.__decorate([
-        Component
+        Component({
+            components: {
+                Navigation: Navigation,
+            },
+        })
     ], App);
     return App;
 }(Vue));

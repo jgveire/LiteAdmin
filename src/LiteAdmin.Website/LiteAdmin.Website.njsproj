@@ -24,7 +24,8 @@
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
     <EnableTypeScript>true</EnableTypeScript>
-    <StartWebBrowser>false</StartWebBrowser>
+    <TypeScriptExperimentalDecorators>true</TypeScriptExperimentalDecorators>
+	<StartWebBrowser>false</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,7 +46,7 @@
     <Content Include="src\components\Navigation.scss" />
     <Content Include="src\components\Navigation.ts" />
     <Content Include="src\components\Navigation.vue" />
-    <Content Include="src\views\About.vue" />
+    <Content Include="src\views\Table.vue" />
     <Content Include="src\views\Home.ts" />
     <Content Include="src\views\Home.vue" />
     <Content Include="tsconfig.json" />
@@ -75,6 +76,7 @@
     <TypeScriptCompile Include="src\store\index.ts" />
     <TypeScriptCompile Include="src\store\MutationTypes.ts" />
     <TypeScriptCompile Include="src\store\SchemaModule.ts" />
+    <TypeScriptCompile Include="src\views\Table.ts" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

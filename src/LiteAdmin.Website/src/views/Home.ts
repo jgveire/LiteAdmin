@@ -1,16 +1,7 @@
-import { Component, Vue } from 'vue-property-decorator';
-import * as ActionTypes from '@/store/ActionTypes';
-import Navigation from '@/components/Navigation';
+import { Vue } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 
-@Component({
-  components: {
-      Navigation,
-  },
-})
+@Component
 export default class Home extends Vue
 {
-    private mounted(): void
-    {
-        //this.$store.dispatch(ActionTypes.getSchema);
-    }
 }
