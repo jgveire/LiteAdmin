@@ -6,12 +6,13 @@
     using System.Linq;
     using Columns;
     using Core;
+    using Sql;
 
-    public class TableRepository : ITableRepository
+    public class SchemaRepository : ISchemaRepository
     {
         public string ConnectionString { get; }
 
-        public TableRepository(string connectionString)
+        public SchemaRepository(string connectionString)
         {
             ConnectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
@@ -46,26 +47,7 @@
             var records = new List<ColumnRecord>();
             using (var connection = new SqlConnection(ConnectionString))
             {
-                var sql = "SELECT C.TABLE_SCHEMA, " +
-                          "	   C.TABLE_Name, " +
-                          "	   C.COLUMN_NAME, " +
-                          "	   C.DATA_TYPE, " +
-                          "	   CAST(CASE WHEN C.IS_NULLABLE = 'YES' THEN 1 ELSE 0 END AS bit) AS IS_NULLABLE, " +
-                          "	   C.CHARACTER_MAXIMUM_LENGTH, " +
-                          "	   C.COLUMN_DEFAULT, " +
-                          "	   CAST(CASE WHEN TC.CONSTRAINT_NAME IS NULL THEN 0 ELSE 1 END AS bit) AS PRIMARY_KEY " +
-                          "FROM INFORMATION_SCHEMA.COLUMNS C " +
-                          "LEFT JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU ON " +
-                          "	   C.TABLE_CATALOG = CCU.TABLE_CATALOG AND " +
-                          "	   C.TABLE_SCHEMA = CCU.TABLE_SCHEMA AND " +
-                          "	   C.TABLE_NAME = CCU.TABLE_NAME AND " +
-                          "	   C.COLUMN_NAME = CCU.COLUMN_NAME " +
-                          "LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS TC ON " +
-                          "	   CCU.TABLE_CATALOG = TC.TABLE_CATALOG AND " +
-                          "	   CCU.TABLE_SCHEMA = TC.TABLE_SCHEMA AND " +
-                          "	   CCU.TABLE_NAME = TC.TABLE_NAME AND " +
-                          "	   CCU.CONSTRAINT_NAME = TC.CONSTRAINT_NAME AND " +
-                          "	   TC.CONSTRAINT_TYPE = 'PRIMARY KEY'";
+                var sql = SqlScript.Schema;
                 var command = new SqlCommand(sql, connection);
                 connection.Open();
                 using (var reader = command.ExecuteReader())

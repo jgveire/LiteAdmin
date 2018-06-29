@@ -12,4 +12,15 @@ export class TableDataService extends ApiService
                 .catch(reject);
         });
     }
+
+    public static getItem(tableName: string, itemId: string): Promise<any>
+    {
+        return new Promise((resolve, reject) =>
+        {
+            const url = tableName + '/' + itemId;
+            this.httpClient().get(url)
+                .then((response) => resolve(response.data))
+                .catch(reject);
+        });
+    }
 }

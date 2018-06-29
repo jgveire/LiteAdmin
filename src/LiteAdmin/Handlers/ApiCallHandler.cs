@@ -10,16 +10,16 @@
     {
         private readonly ITableCallHandler _tableCallHandler;
         private readonly ISchemaHandler _schemaHandler;
-        private readonly ITableRepository _tableRepository;
+        private readonly ISchemaRepository _schemaRepository;
 
         public ApiCallHandler(
             ITableCallHandler tableCallHandler,
             ISchemaHandler schemaHandler,
-            ITableRepository tableRepository)
+            ISchemaRepository schemaRepository)
         {
             _tableCallHandler = tableCallHandler ?? throw new ArgumentNullException(nameof(tableCallHandler));
             _schemaHandler = schemaHandler ?? throw new ArgumentNullException(nameof(schemaHandler));
-            _tableRepository = tableRepository ?? throw new ArgumentNullException(nameof(tableRepository));
+            _schemaRepository = schemaRepository ?? throw new ArgumentNullException(nameof(schemaRepository));
         }
 
         public Task Handle(PathString remainingPath)
@@ -36,7 +36,7 @@
                 return _schemaHandler.Handle();
             }
 
-            var tables = _tableRepository.GetTables();
+            var tables = _schemaRepository.GetTables();
             if (!tables.ContaintTable(name))
             {
                 return HttpNotFoundResponse();

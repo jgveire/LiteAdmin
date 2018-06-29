@@ -7,9 +7,10 @@ import * as ActionTypes from '@/store/ActionTypes';
 import * as ParamNames from '@/ParamNames';
 import { ITable } from '@/store/SchemaModule';
 import { IColumn } from '@/store/SchemaModule';
+import { ITableItem } from '@/store/TableDataModule';
 
 @Component
-export default class Table extends Vue
+export default class Details extends Vue
 {
     public $store!: IStore<IStoreState>;
 
@@ -17,14 +18,23 @@ export default class Table extends Vue
 
     public $route!: Route;
 
-    public created(): void
+    public mounted(): void
     {
-        this.$store.dispatch(ActionTypes.getTableItems, this.tableName);
+        const payload: ITableItem = {
+            tableName: this.tableName,
+            itemId: this.itemId,
+        };
+        this.$store.dispatch(ActionTypes.getTableItem, payload);
     }
 
     public get tableName(): string
     {
         return this.$route.params[ParamNames.tableName];
+    }
+
+    public get itemId(): string
+    {
+        return this.$route.params[ParamNames.id];
     }
 
     public get tableSchema(): ITable
@@ -41,22 +51,8 @@ export default class Table extends Vue
         };
     }
 
-    public get items(): any[]
+    public get item(): any[]
     {
-        return this.$store.getters.items;
-    }
-
-    public showDetails(item: any): void
-    {
-        for (const column of this.tableSchema.columns)
-        {
-            if (column.isPrimaryKey)
-            {
-                const id: any = item[column.name];
-                const path: string = '/tables/' + this.tableName + '/details/' + id.toString();
-                this.$router.push(path);
-                return;
-            }
-        }
+        return this.$store.getters.item;
     }
 }

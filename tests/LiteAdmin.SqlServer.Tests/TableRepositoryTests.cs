@@ -9,7 +9,7 @@ namespace LiteAdmin.SqlServer.Tests
         public void When_GetTables_is_called_then_a_collection_tables_should_be_returned()
         {
             // Arrange
-            var systemUnderTest = new TableRepository(@"Server=.\SQLExpress;Database=Example;Trusted_Connection=True");
+            var systemUnderTest = new SchemaRepository(@"Server=.\SQLExpress;Database=Example;Trusted_Connection=True");
 
             // Act
             var result = systemUnderTest.GetTables();

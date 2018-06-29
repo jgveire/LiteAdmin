@@ -42,6 +42,7 @@ const store: IStore<IStoreState> = new Vuex.Store<IStoreState>({
             tables: new Array(),
         },
         tableData: {
+            item: new Object(),
             items: new Array(),
             tableName: '',
         },

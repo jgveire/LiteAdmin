@@ -21,7 +21,7 @@
 
             var type = _columnDictionary[columnRecord.DataType];
             var columnName = char.ToLowerInvariant(columnRecord.ColumnName[0]) + columnRecord.ColumnName.Substring(1);
-            var args = new object[] { columnName, columnRecord.IsNullable, columnRecord.MaximumLength, columnRecord.DefaultValue };
+            var args = new object[] { columnName, columnRecord.IsNullable, columnRecord.MaximumLength, columnRecord.DefaultValue, columnRecord.IsPrimaryKey };
             IColumn column = (IColumn)Activator.CreateInstance(type, args);
             return column;
         }

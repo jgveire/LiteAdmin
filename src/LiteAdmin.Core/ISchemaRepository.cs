@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface ITableRepository
+    public interface ISchemaRepository
     {
         ICollection<ITable> GetTables();
     }

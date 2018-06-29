@@ -6,6 +6,7 @@
     {
         Type DataType { get; }
         object DefaultValue { get; }
+        bool IsPrimaryKey { get; }
         bool IsNullable { get; }
         int MaxLength { get; }
         string Name { get; }

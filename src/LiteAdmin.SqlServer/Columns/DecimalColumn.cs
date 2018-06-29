@@ -6,8 +6,8 @@
     {
         private readonly string _defaultValue;
 
-        public DecimalColumn(string name, bool isNullable, int maxLength, string defaultValue)
-            : base(name, isNullable, maxLength)
+        public DecimalColumn(string name, bool isNullable, int maxLength, string defaultValue, bool isPrimaryKey)
+            : base(name, isNullable, maxLength, isPrimaryKey)
         {
             _defaultValue = defaultValue;
         }

@@ -8,16 +8,16 @@
 
     public class SchemaHandler : JsonHandler, ISchemaHandler
     {
-        private readonly ITableRepository _tableRepository;
+        private readonly ISchemaRepository _schemaRepository;
 
-        public SchemaHandler(ITableRepository tableRepository)
+        public SchemaHandler(ISchemaRepository schemaRepository)
         {
-            _tableRepository = tableRepository ?? throw new ArgumentNullException(nameof(tableRepository));
+            _schemaRepository = schemaRepository ?? throw new ArgumentNullException(nameof(schemaRepository));
         }
 
         public Task Handle()
         {
-            var tables = _tableRepository
+            var tables = _schemaRepository
                 .GetTables()
                 .Select(t => new TableModel
                 {
@@ -28,7 +28,8 @@
                         DataType = c.DataType.Name,
                         DefaultValue = c.DefaultValue?.ToString(),
                         IsNullable = c.IsNullable,
-                        MaxLength = c.MaxLength
+                        MaxLength = c.MaxLength,
+                        IsPrimaryKey = c.IsPrimaryKey
                     }).ToList()
                 });
 

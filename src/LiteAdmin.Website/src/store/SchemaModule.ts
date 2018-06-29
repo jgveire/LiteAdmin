@@ -17,6 +17,7 @@ export interface ITable
 export interface IColumn
 {
     name: string;
+    isPrimaryKey: boolean;
 }
 
 export interface ISchemaState
