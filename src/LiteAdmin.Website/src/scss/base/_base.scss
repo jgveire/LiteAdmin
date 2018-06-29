@@ -1,0 +1,55 @@
+@import '../abstracts/functions';
+@import '../abstracts/mixins';
+@import '../abstracts/variables';
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    background: map-deep-get($colors, 'white', 'default');
+    font-family: $global-font-family;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4rem;
+}
+
+.container {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 15px;
+    width: 100%;
+
+    @include respond-to(medium) {
+        padding: 0 20px;
+    }
+
+    @include respond-to(xxlarge) {
+        margin: 0 auto;
+        max-width: $global-max-width;
+        padding: 0 40px;
+        width: 100%;
+    }
+
+    &__content {
+        padding: 10px;
+
+        @include respond-to(medium) {
+            padding: 30px;
+        }
+
+        @include respond-to(xlarge) {
+            padding: 50px;
+        }
+    }
+}
+
+.grid {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+    @include respond-to(medium) {
+        grid-gap: 200px;
+    }
+}

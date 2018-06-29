@@ -1,0 +1,10 @@
+@import '../abstracts/functions';
+@import '../abstracts/mixins';
+@import '../abstracts/variables';
+
+.button {
+    color: $button-color;
+    background-color: $button-border-color;
+    border: $button-border-width solid $button-border-color;
+    border-radius: $button-border-radius;
+}

@@ -1,0 +1,60 @@
+@import './_variables.scss';
+
+/// Add media query for xxlarge sized screens
+/// @access public
+/// @param {Media} @media - Name of the media query
+@mixin respond-to($media) {
+    $breakpoint: map-get($breakpoints, $media);
+
+    @media only screen and (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+/// Add media query for specific heights
+/// @access public
+/// @param {Height} @height - Height in pixels to respond to. No predefined map is used because these things are almost always custom
+@mixin respond-to-height($height) {
+    @media only screen and (min-height: $height) {
+        @content;
+    }
+}
+
+/// Add media query for xxlarge sized screens with Retina display
+/// @access public
+/// @param {Media} @media - Name of the media query
+@mixin respond-to-retina($media) {
+    $breakpoint: map-get($breakpoints, $media);
+
+    @media only screen and (min-device-pixel-ratio: 2) and (min-width: $breakpoint),
+        only screen and (min-resolution: 192dpi) and (min-width: $breakpoint),
+        only screen and (min-resolution: 2dppx) and (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+/// Perfectly center an element horizontally and vertically
+/// Only have to add 'display: inline-block' to a single child element
+/// from: https://css-tricks.com/centering-in-the-unknown/
+/// @access public
+@mixin center-perfectly() {
+    text-align: center;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -.25rem; /* Adjusts for spacing */
+    }
+}
+
+/// Clear floats of container element
+/// @access public
+@mixin clear-float() {
+    &::after {
+        content: '';
+        clear: both;
+        display: table;
+    }
+}

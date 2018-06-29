@@ -60,6 +60,15 @@
     <Content Include="src\components\Navigation.scss" />
     <Content Include="src\components\Navigation.ts" />
     <Content Include="src\components\Navigation.vue" />
+    <Content Include="src\scss\abstracts\_functions.scss" />
+    <Content Include="src\scss\abstracts\_mixins.scss" />
+    <Content Include="src\scss\abstracts\_variables.scss" />
+    <Content Include="src\scss\base\_base.scss" />
+    <Content Include="src\scss\base\_buttons.scss" />
+    <Content Include="src\scss\base\_forms.scss" />
+    <Content Include="src\scss\base\_typography.scss" />
+    <Content Include="src\scss\vendors\_normalize.scss" />
+    <Content Include="src\scss\_shame.scss" />
     <Content Include="src\views\Table.vue" />
     <Content Include="src\views\Home.ts" />
     <Content Include="src\views\Home.vue" />
@@ -74,6 +83,10 @@
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\scss\" />
+    <Folder Include="src\scss\abstracts\" />
+    <Folder Include="src\scss\base\" />
+    <Folder Include="src\scss\vendors\" />
     <Folder Include="src\services\" />
     <Folder Include="src\store\" />
     <Folder Include="src\views\" />

@@ -1,0 +1,147 @@
+// Variables
+// Mainly colors and some other visual properties
+// Colors should be defined here, or use named colors in other files instead of map-gets
+
+// Breakpoints
+$breakpoints: ('small': 0, 'medium': 640px, 'large': 1024px, 'xlarge': 1200px, 'xxlarge': 1440px);
+
+$global-max-width: 1170px;
+$global-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$global-font-family-header: 'Poppins', sans-serif;
+$global-font-size: 16px;
+$global-font-weight-light: 300;
+$global-font-weight-normal: 400;
+$global-font-weight-bold: 700;
+
+//
+// Colors
+$colors: (
+    'black': ('dark': #000000, 'default': #030303),
+    'blue': ('dark': #062743, 'default': #113a5d, 'light': lighten(#113a5d, 20%)),
+    'grey': ('darker': #333333, 'dark': #888888, 'default': #cccccc, 'light': #eeeeee),
+    'lemon': ('dark': darken(#bcdd24, 5%), 'default': #bcdd24, 'light': lighten(#bcdd24, 10%)),
+    'red': ('dark': darken(#ff7a8a, 10%), 'default': #ff7a8a, 'light': lighten(#ff7a8a, 20%)),
+    'turqiouse': ('dark': darken(#41d0a3, 5%), 'default': #41d0a3, 'light': lighten(#41d0a3, 10%)),
+    'white': ('default': #f9f9f9, 'light': #ffffff)
+);
+
+$color-primary-dark: map-deep-get($colors, 'blue', 'dark');
+$color-primary: map-deep-get($colors, 'blue', 'default');
+$color-primary-light: map-deep-get($colors, 'blue', 'light');
+
+$color-secondary-dark: map-deep-get($colors, 'turqiouse', 'dark');
+$color-secondary: map-deep-get($colors, 'turqiouse', 'default');
+$color-secondary-light: map-deep-get($colors, 'turqiouse', 'light');
+
+$color-warning-dark: map-deep-get($colors, 'red', 'dark');
+$color-warning: map-deep-get($colors, 'red', 'default');
+$color-warning-light: map-deep-get($colors, 'red', 'light');
+
+$color-text: map-deep-get($colors, 'grey', 'darker');
+$color-header: $color-text;
+$color-header-alternate: $color-primary;
+$color-anchor: $color-secondary;
+$color-anchor-hover: $color-secondary-light;
+$color-anchor-focus: $color-secondary-light;
+$color-border: map-deep-get($colors, 'black', 'default');
+
+$color-sets: (
+    'primary': (
+        'default': $color-primary,
+        'hover': $color-primary-light
+    ),
+    'secondary': (
+        'default': $color-secondary,
+        'hover': $color-secondary-light
+    ),
+    'warning': (
+        'default': $color-warning,
+        'hover': $color-secondary-light
+    ),
+    'disabled': (
+        'default': map-deep-get($colors, 'grey', 'default'),
+        'hover': map-deep-get($colors, 'grey', 'light')
+    )
+);
+
+//
+// Transition defaults
+$transition-smoothing: cubic-bezier(.23, 1, .32, 1);
+$transition-time: .2s;
+$transition: all $transition-time $transition-smoothing;
+
+// Badge
+$badge-background: map-deep-get($colors, 'grey', 'default');
+$badge-background-hover: map-deep-get($colors, 'grey', 'light');
+$badge-border-color: map-deep-get($colors, 'grey', 'default');
+$badge-border-color-hover: map-deep-get($colors, 'grey', 'light');
+$badge-border-radius: 3px;
+$badge-border-width: 2px;
+$badge-color: map-deep-get($colors, 'white', 'default');
+$badge-font-size: rem-calc(14);
+$badge-line-height: rem-calc(18);
+$badge-transition: $transition;
+
+// Button
+$button-background: map-deep-get($colors, 'blue', 'default');
+$button-background-hover: map-deep-get($colors, 'blue', 'light');
+$button-border-color: map-deep-get($colors, 'blue', 'default');
+$button-border-color-hover: map-deep-get($colors, 'blue', 'light');
+$button-border-color-active: map-deep-get($colors, 'blue', 'dark');
+$button-border-radius: 3px;
+$button-border-width: 2px;
+$button-color: map-deep-get($colors, 'white', 'default');
+$button-font-size: rem-calc(14);
+$button-line-height: rem-calc(18);
+$button-transition: $transition;
+
+// Overlay
+$overlay-background: map-deep-get($colors, 'white', 'default');
+$overlay-close-color: $color-primary;
+$overlay-close-color-hover: $color-secondary;
+$overlay-close-transition: $transition;
+$overlay-transition: all .3s $transition-smoothing;
+
+// Pagination
+$pagination-link-background-color: map-deep-get($colors, 'grey', 'light');
+$pagination-link-background-color-hover: map-deep-get($colors, 'grey', 'default');
+$pagination-link-background-color-active: $color-secondary;
+$pagination-link-border-radius: 5px;
+$pagination-link-color: map-deep-get($colors, 'white', 'default');
+$pagination-link-color-hover: map-deep-get($colors, 'white', 'default');
+$pagination-link-color-active: map-deep-get($colors, 'white', 'default');
+
+// Sprite Card
+$sprite-card-background: transparent;
+$sprite-card-border-color: transparent;
+$sprite-card-border-width: 2px;
+$sprite-card-border-radius: 3px;
+$sprite-card-transition: $transition;
+$sprite-card-image-background-color: map-deep-get($colors, 'grey', 'light');
+$sprite-card-image-border-color: transparent;
+$sprite-card-image-border-color-hover: $color-secondary;
+$sprite-card-image-border-width: 2px;
+$sprite-card-image-border-radius: 5px;
+$sprite-card-image-transition: $transition;
+$sprite-card-title-color: $color-text;
+$sprite-card-title-color-hover: $color-secondary;
+$sprite-card-title-font-size: rem-calc(18);
+$sprite-card-title-font-weight: $global-font-weight-bold;
+
+// Footer
+$footer-background-color: map-deep-get($colors, 'grey', 'light');
+$footer-border-color: transparent;
+$footer-border-width: 2px;
+$footer-font-size: rem-calc(14);
+$footer-grid-gap: 100px;
+$footer-title-color: $color-text;
+$footer-title-font-size: rem-calc(16);
+$footer-title-font-weight: $global-font-weight-bold;
+
+// Forms
+$form-control-border-color: $color-border;
+$form-control-border-color-highlight: $color-secondary;
+$form-control-border-width: 2px;
+$form-control-font-color: $color-text;
+$form-control-line-height: rem-calc(24);
+$form-control-padding: 6px 20px;

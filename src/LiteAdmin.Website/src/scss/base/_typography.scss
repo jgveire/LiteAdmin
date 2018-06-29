@@ -1,0 +1,67 @@
+@import '../abstracts/functions';
+@import '../abstracts/mixins';
+@import '../abstracts/variables';
+
+body {
+    font-size: rem-calc(16);
+    font-weight: 400;
+    line-height: rem-calc(28);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $color-header;
+    font-family: $global-font-family-header;
+    font-weight: 700;
+    margin: 0;
+}
+
+h1 {
+    font-size: rem-calc(32);
+    margin-bottom: 10px;
+}
+
+h2{
+    font-size: rem-calc(24);
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: rem-calc(20);
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: rem-calc(18);
+    margin-bottom: 10px;
+}
+
+h5 {
+    font-size: rem-calc(14);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+h6 {
+    font-size: rem-calc(14);
+    margin-bottom: 10px;
+}
+
+p {
+    margin-top: 0;
+}
+
+a {
+    color: $color-anchor;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+    transition: $transition;
+
+    &:hover {
+        color: $color-anchor-hover;
+    }
+
+    &:focus, &:active {
+        color: $color-anchor-focus;
+    }
+}
