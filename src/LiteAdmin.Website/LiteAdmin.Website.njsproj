@@ -38,8 +38,21 @@
     <Content Include=".gitignore" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
+    <Content Include="public\android-chrome-192x192.png" />
+    <Content Include="public\android-chrome-512x512.png" />
+    <Content Include="public\apple-touch-icon.png" />
+    <Content Include="public\browserconfig.xml" />
+    <Content Include="public\favicon-16x16.png" />
+    <Content Include="public\favicon-32x32.png" />
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
+    <Content Include="public\mstile-144x144.png" />
+    <Content Include="public\mstile-150x150.png" />
+    <Content Include="public\mstile-310x150.png" />
+    <Content Include="public\mstile-310x310.png" />
+    <Content Include="public\mstile-70x70.png" />
+    <Content Include="public\safari-pinned-tab.svg" />
+    <Content Include="public\site.webmanifest" />
     <Content Include="src\App.scss" />
     <Content Include="src\App.ts" />
     <Content Include="src\App.vue" />
@@ -67,15 +80,18 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\main.ts" />
+    <TypeScriptCompile Include="src\ParamNames.ts" />
     <TypeScriptCompile Include="src\router.ts" />
     <TypeScriptCompile Include="src\services\ApiService.ts" />
     <TypeScriptCompile Include="src\services\index.ts" />
+    <TypeScriptCompile Include="src\services\TableDataService.ts" />
     <TypeScriptCompile Include="src\services\SchemaService.ts" />
     <TypeScriptCompile Include="src\shims-tsx.d.ts" />
     <TypeScriptCompile Include="src\shims-vue.d.ts" />
     <TypeScriptCompile Include="src\store\ActionTypes.ts" />
     <TypeScriptCompile Include="src\store\index.ts" />
     <TypeScriptCompile Include="src\store\MutationTypes.ts" />
+    <TypeScriptCompile Include="src\store\TableDataModule.ts" />
     <TypeScriptCompile Include="src\store\SchemaModule.ts" />
     <TypeScriptCompile Include="src\views\Table.ts" />
   </ItemGroup>

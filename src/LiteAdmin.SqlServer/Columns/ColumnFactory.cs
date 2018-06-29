@@ -20,7 +20,8 @@
             }
 
             var type = _columnDictionary[columnRecord.DataType];
-            var args = new object[] { columnRecord.ColumnName, columnRecord.IsNullable, columnRecord.MaximumLength, columnRecord.DefaultValue };
+            var columnName = char.ToLowerInvariant(columnRecord.ColumnName[0]) + columnRecord.ColumnName.Substring(1);
+            var args = new object[] { columnName, columnRecord.IsNullable, columnRecord.MaximumLength, columnRecord.DefaultValue };
             IColumn column = (IColumn)Activator.CreateInstance(type, args);
             return column;
         }

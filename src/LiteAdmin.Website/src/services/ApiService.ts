@@ -21,7 +21,7 @@ export default class ApiService
     {
         const instance: AxiosInstance = Axios.create({
             baseURL: 'http://localhost:9000/liteadmin/api/',
-            timeout: 5000,
+            timeout: 20000,
             transformResponse: (data: any): any =>
             {
                 if (data && typeof (data) === 'string')

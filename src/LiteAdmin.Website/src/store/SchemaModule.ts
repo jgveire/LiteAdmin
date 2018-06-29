@@ -32,6 +32,11 @@ export interface ISchemaGetters
 const actions: ActionTree<ISchemaState, IStoreState> = {
     [ActionTypes.getSchema](context: ActionContext<ISchemaState, IStoreState>): Promise<void>
     {
+        if (context.state.tables.length !== 0)
+        {
+            return Promise.resolve();
+        }
+
         return new Promise<void>((resolve, reject) =>
         {
             SchemaService.getSchema()

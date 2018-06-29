@@ -7,6 +7,9 @@ import { GetterTree } from 'vuex';
 import SchemaModule from '@/store/SchemaModule';
 import { ISchemaState } from '@/store/SchemaModule';
 import { ISchemaGetters } from '@/store/SchemaModule';
+import TableDataModule from '@/store/TableDataModule';
+import { ITableDataState } from '@/store/TableDataModule';
+import { ITableDataGetters } from '@/store/TableDataModule';
 
 Vue.use(Vuex);
 
@@ -16,11 +19,12 @@ export interface IStore<T> extends Store<T>
 }
 
 export interface IStoreState {
-    schemaModule: ISchemaState;
+    schema: ISchemaState;
+    tableData: ITableDataState;
 }
 
 // tslint:disable no-empty-interface
-export interface IStoreGetters extends ISchemaGetters {
+export interface IStoreGetters extends ISchemaGetters, ITableDataGetters {
 }
 
 const actions: ActionTree<IStoreState, IStoreState> = {
@@ -34,8 +38,12 @@ const mutations: MutationTree<IStoreState> = {
 
 const store: IStore<IStoreState> = new Vuex.Store<IStoreState>({
     state: {
-        schemaModule: {
+        schema: {
             tables: new Array(),
+        },
+        tableData: {
+            items: new Array(),
+            tableName: '',
         },
     },
     actions,
@@ -43,6 +51,7 @@ const store: IStore<IStoreState> = new Vuex.Store<IStoreState>({
     getters,
     modules: {
         SchemaModule,
+        TableDataModule,
     },
 });
 
