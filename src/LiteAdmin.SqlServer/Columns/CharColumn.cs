@@ -1,6 +1,6 @@
 ﻿namespace LiteAdmin.SqlServer.Columns
 {
-    internal class CharColumn : ColumnBase<double>
+    internal class CharColumn : ColumnBase<char>
     {
         private readonly string _defaultValue;
 

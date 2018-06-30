@@ -1,6 +1,6 @@
 ﻿namespace LiteAdmin.SqlServer.Columns
 {
-    internal class ByteColumn : ColumnBase<double>
+    internal class ByteColumn : ColumnBase<byte>
     {
         private readonly string _defaultValue;
 

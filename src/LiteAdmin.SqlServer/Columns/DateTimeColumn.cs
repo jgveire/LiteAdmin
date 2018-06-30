@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class DateTimeColumn : ColumnBase<string>
+    internal class DateTimeColumn : ColumnBase<DateTime>
     {
         private readonly string _defaultValue;
 

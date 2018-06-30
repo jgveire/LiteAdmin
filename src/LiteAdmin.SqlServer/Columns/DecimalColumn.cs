@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class DecimalColumn : ColumnBase<Guid>
+    internal class DecimalColumn : ColumnBase<decimal>
     {
         private readonly string _defaultValue;
 
