@@ -15,16 +15,16 @@
             _databaseRepository = databaseRepository ?? throw new ArgumentNullException(nameof(databaseRepository));
         }
 
-        public async Task Handle(string tableName, string id)
+        public async Task Handle(ITable table, string id)
         {
             if (HttpMethods.IsGet(Request.Method) && !string.IsNullOrEmpty(id))
             {
-                var records = await _databaseRepository.GetItemAsync(tableName, id);
+                var records = await _databaseRepository.GetItemAsync(table, id);
                 await JsonResponse(records);
             }
             else if (HttpMethods.IsGet(Request.Method))
             {
-                var records = await _databaseRepository.GetItemsAsync(tableName, 1);
+                var records = await _databaseRepository.GetItemsAsync(table);
                 await JsonResponse(records);
             }
             else if (HttpMethods.IsPut(Request.Method) && !string.IsNullOrEmpty(id))
@@ -33,13 +33,13 @@
                 {
                     var json = reader.ReadToEnd();
                     var dictionary = DeserializeJson(json);
-                    await _databaseRepository.UpdateItemAsync(tableName, id, dictionary);
+                    await _databaseRepository.UpdateItemAsync(table, id, dictionary);
                     HttpNoContentResponse();
                 }
             }
             else if (HttpMethods.IsDelete(Request.Method) && !string.IsNullOrEmpty(id))
             {
-                await _databaseRepository.DeleteItemAsync(tableName, id);
+                await _databaseRepository.DeleteItemAsync(table, id);
                 HttpNoContentResponse();
             }
             else if (HttpMethods.IsPost(Request.Method))
@@ -48,7 +48,7 @@
                 {
                     var json = reader.ReadToEnd();
                     var dictionary = DeserializeJson(json);
-                    await _databaseRepository.InsertItemAsync(tableName, dictionary);
+                    await _databaseRepository.InsertItemAsync(table, dictionary);
                     HttpNoContentResponse();
                 }
             }

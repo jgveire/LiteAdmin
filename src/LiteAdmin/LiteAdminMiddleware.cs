@@ -3,22 +3,20 @@
     using System;
     using System.Threading.Tasks;
     using Handlers;
+    using LiteAdmin.Extensions;
     using Microsoft.AspNetCore.Http;
 
     public class LiteAdminMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IApiCallHandler _apiCallHandler;
-        private readonly IStaticFileHandler _staticFileHandler;
+        private readonly IServiceProvider _serviceProvider;
 
         public LiteAdminMiddleware(
             RequestDelegate next,
-            IApiCallHandler apiCallHandler,
-            IStaticFileHandler staticFileHandler)
+            IServiceProvider serviceProvider)
         {
             _next = next ?? throw new ArgumentNullException(nameof(next));
-            _apiCallHandler = apiCallHandler ?? throw new ArgumentNullException(nameof(apiCallHandler));
-            _staticFileHandler = staticFileHandler ?? throw new ArgumentNullException(nameof(staticFileHandler));
+            _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         }
 
         public Task InvokeAsync(HttpContext context)
@@ -30,12 +28,14 @@
             }
             else if (context.Request.Path.StartsWithSegments("/liteadmin/api", out var remaining))
             {
-                _apiCallHandler.Context = context;
-                return _apiCallHandler.Handle(remaining);
+                var apiCallHandler = _serviceProvider.GetService<IApiCallHandler>();
+                apiCallHandler.Context = context;
+                return apiCallHandler.Handle(remaining);
             }
             else if (context.Request.Path.StartsWithSegments("/liteadmin", out remaining))
             {
-                return _staticFileHandler.Handle(context, remaining);
+                var staticFileHandler = _serviceProvider.GetService<IStaticFileHandler>();
+                return staticFileHandler.Handle(context, remaining);
             }
 
             return _next(context);

@@ -2,8 +2,10 @@
 
 namespace LiteAdmin.Handlers
 {
+    using Core;
+
     public interface ITableCallHandler : IJsonHandler
     {
-        Task Handle(string tableName, string id);
+        Task Handle(ITable table, string id);
     }
 }

@@ -8,17 +8,14 @@
 
     public class ApiCallHandler : JsonHandler, IApiCallHandler
     {
-        private readonly ITableCallHandler _tableCallHandler;
-        private readonly ISchemaHandler _schemaHandler;
+        private readonly IServiceProvider _serviceProvider;
         private readonly ISchemaRepository _schemaRepository;
 
         public ApiCallHandler(
-            ITableCallHandler tableCallHandler,
-            ISchemaHandler schemaHandler,
+            IServiceProvider serviceProvider,
             ISchemaRepository schemaRepository)
         {
-            _tableCallHandler = tableCallHandler ?? throw new ArgumentNullException(nameof(tableCallHandler));
-            _schemaHandler = schemaHandler ?? throw new ArgumentNullException(nameof(schemaHandler));
+            _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
             _schemaRepository = schemaRepository ?? throw new ArgumentNullException(nameof(schemaRepository));
         }
 
@@ -32,18 +29,21 @@
             }
             else if (string.Equals(name, "schema", StringComparison.OrdinalIgnoreCase))
             {
-                _schemaHandler.Context = Context;
-                return _schemaHandler.Handle();
+                var schemaHandler = _serviceProvider.GetService<ISchemaHandler>();
+                schemaHandler.Context = Context;
+                return schemaHandler.Handle();
             }
 
             var tables = _schemaRepository.GetTables();
-            if (!tables.ContaintTable(name))
+            var table = tables.GetTableByName(name);
+            if (table == null)
             {
                 return HttpNotFoundResponse();
             }
 
-            _tableCallHandler.Context = Context;
-            return _tableCallHandler.Handle(name, id);
+            var tableCallHandler = _serviceProvider.GetService<ITableCallHandler>();
+            tableCallHandler.Context = Context;
+            return tableCallHandler.Handle(table, id);
         }
 
         private string GetControllerName(PathString remainingPath)
