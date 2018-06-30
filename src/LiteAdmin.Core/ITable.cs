@@ -4,8 +4,9 @@
 
     public interface ITable
     {
-        string Name { get; }
-        string Schema { get; }
         ICollection<IColumn> Columns { get; }
+        string Name { get; }
+        string PrimaryKey { get; }
+        string Schema { get; }
     }
 }

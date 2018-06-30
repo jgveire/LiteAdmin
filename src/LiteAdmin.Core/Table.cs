@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class Table : ITable
     {
@@ -15,10 +16,17 @@
             Schema = schema ?? throw new ArgumentNullException(nameof(schema));
         }
 
+        public ICollection<IColumn> Columns { get; } = new List<IColumn>();
+
         public string Name { get; set; }
+
+        public string PrimaryKey => GetPrimaryKey();
 
         public string Schema { get; set; }
 
-        public ICollection<IColumn> Columns { get; } = new List<IColumn>();
+        private string GetPrimaryKey()
+        {
+            return Columns.FirstOrDefault(e => e.IsPrimaryKey)?.Name;
+        }
     }
 }

@@ -15,11 +15,11 @@
 
         public string ConnectionString { get; }
 
-        public async Task DeleteItemAsync(string tableName, string id)
+        public async Task DeleteItemAsync(ITable table, string id)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
-                var sql = $"DELETE FROM {tableName} WHERE Id = @Identifier";
+                var sql = $"DELETE FROM {table.Name} WHERE {table.PrimaryKey} = @Identifier";
                 var command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Identifier", id);
                 connection.Open();
@@ -27,11 +27,11 @@
             }
         }
 
-        public async Task<Dictionary<string, object>> GetItemAsync(string tableName, string id)
+        public async Task<Dictionary<string, object>> GetItemAsync(ITable table, string id)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
-                var sql = $"SELECT * FROM {tableName} WHERE Id = @Identifier";
+                var sql = $"SELECT * FROM {table.Name} WHERE {table.PrimaryKey} = @Identifier";
                 var command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Identifier", id);
                 connection.Open();
@@ -54,14 +54,17 @@
             return null;
         }
 
-        public async Task<ICollection<Dictionary<string, object>>> GetItemsAsync(string tableName, int pageNumber, int pageSize = 20)
+        public async Task<ICollection<Dictionary<string, object>>> GetItemsAsync(
+            ITable table,
+            int pageNumber = 1,
+            int pageSize = 20)
         {
             var records = new List<Dictionary<string, object>>();
 
             using (var connection = new SqlConnection(ConnectionString))
             {
-                var sql = $"SELECT * FROM {tableName} " +
-                          "ORDER BY Id " +
+                var sql = $"SELECT * FROM {table.Name} " +
+                          $"ORDER BY {table.PrimaryKey} " +
                           "OFFSET @PageSize * (@PageNumber - 1) ROWS " +
                           "FETCH NEXT @PageSize ROWS ONLY";
                 var command = new SqlCommand(sql, connection);
@@ -87,18 +90,18 @@
             return records;
         }
 
-        public async Task UpdateItemAsync(string tableName, string id, Dictionary<string, object> dictionary)
+        public async Task UpdateItemAsync(ITable table, string id, Dictionary<string, object> dictionary)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
-                var sql = $"UPDATE {tableName} SET ";
+                var sql = $"UPDATE {table.Name} SET ";
                 foreach (var item in dictionary)
                 {
                     sql += $"{item.Key} = @{item.Key},";
                 }
 
                 sql = sql.Substring(0, sql.Length - 1);
-                sql += " WHERE Id = @Identifier";
+                sql += " WHERE {table.PrimaryKey} = @Identifier";
 
                 var command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Identifier", id);
@@ -112,11 +115,11 @@
             }
         }
 
-        public async Task InsertItemAsync(string tableName, Dictionary<string, object> dictionary)
+        public async Task InsertItemAsync(ITable table, Dictionary<string, object> dictionary)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
-                var sql = $"INSERT INTO {tableName} (";
+                var sql = $"INSERT INTO {table.Name} (";
                 foreach (var item in dictionary)
                 {
                     sql += $"{item.Key},";
