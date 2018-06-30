@@ -8,6 +8,7 @@ import * as ParamNames from '@/ParamNames';
 import { ITable } from '@/store/SchemaModule';
 import { IColumn } from '@/store/SchemaModule';
 import { ITableItem } from '@/store/TableDataModule';
+import { stringHelper } from '@/helpers/StringHelper';
 
 @Component
 export default class Details extends Vue
@@ -54,5 +55,48 @@ export default class Details extends Vue
     public get item(): any[]
     {
         return this.$store.getters.item;
+    }
+
+    public getInputType(dataType: string): string
+    {
+        if (dataType === 'Int16' ||
+            dataType === 'Int32' ||
+            dataType === 'Int64' ||
+            dataType === 'decimal' ||
+            dataType === 'float')
+        {
+            return 'number';
+        }
+        else if (dataType === 'DateTime')
+        {
+            return 'date';
+        }
+        return 'text';
+    }
+
+    public getMaxLength(maxLength: string): string
+    {
+        if (maxLength === '0')
+        {
+            return '';
+        }
+
+        return maxLength;
+    }
+
+    public getFriendlyName(columnName: string): string
+    {
+        return stringHelper.split(columnName);
+    }
+
+    public save(): void
+    {
+
+    }
+
+    public cancel(): void
+    {
+        const path: string = '/tables/' + this.tableName;
+        this.$router.push(path);
     }
 }

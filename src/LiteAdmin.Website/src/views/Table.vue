@@ -1,14 +1,14 @@
 <template>
     <div class="home">
-        <h1>{{tableName}}</h1>
+        <h1>{{getFriendlyName(tableName)}}</h1>
 
         <table>
             <thead>
                 <tr>
-                    <td v-for="(column, index) in tableSchema.columns" 
+                    <th v-for="(column, index) in tableSchema.columns"
                         v-if="index < 5 && !column.isPrimaryKey">
-                        {{column.name}}
-                    </td>
+                        {{getFriendlyName(column.name)}}
+                    </th>
                 </tr>
             </thead>
             <tbody>

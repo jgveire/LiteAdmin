@@ -7,6 +7,7 @@ import * as ActionTypes from '@/store/ActionTypes';
 import * as ParamNames from '@/ParamNames';
 import { ITable } from '@/store/SchemaModule';
 import { IColumn } from '@/store/SchemaModule';
+import { stringHelper } from '@/helpers/StringHelper';
 
 @Component
 export default class Table extends Vue
@@ -58,5 +59,10 @@ export default class Table extends Vue
                 return;
             }
         }
+    }
+
+    public getFriendlyName(name: string): string
+    {
+        return stringHelper.split(name);
     }
 }

@@ -31,8 +31,11 @@ export interface ITableItem
 const actions: ActionTree<ITableDataState, IStoreState> = {
     [ActionTypes.getTableItems](context: ActionContext<ITableDataState, IStoreState>, tableName: string): Promise<void>
     {
-        context.commit(MutationTypes.updateTableItems, new Array());
-        context.commit(MutationTypes.updateTableName, tableName);
+        if (context.getters.tableName !== tableName)
+        {
+            context.commit(MutationTypes.updateTableName, tableName);
+            context.commit(MutationTypes.updateTableItems, new Array());
+        }
 
         return new Promise<void>((resolve, reject) =>
         {

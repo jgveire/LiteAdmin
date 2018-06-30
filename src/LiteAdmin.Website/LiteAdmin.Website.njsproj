@@ -84,6 +84,7 @@
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\helpers\" />
     <Folder Include="src\scss\" />
     <Folder Include="src\scss\abstracts\" />
     <Folder Include="src\scss\base\" />
@@ -93,6 +94,7 @@
     <Folder Include="src\views\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\helpers\StringHelper.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\ParamNames.ts" />
     <TypeScriptCompile Include="src\router.ts" />
