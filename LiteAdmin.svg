@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink;" width="128" height="128"
-	 viewBox="0 0 128 128" overflow="visible" enable-background="new 0 0 128 128" xml:space="preserve">
-<line fill="none" stroke="#666666" stroke-width="3" x1="80.71" y1="56.32" x2="36.17" y2="51.73"/>
-<line fill="none" stroke="#666666" stroke-width="3" x1="19.24" y1="106.93" x2="36.81" y2="52.78"/>
-<line fill="none" stroke="#666666" stroke-width="3" x1="36.81" y1="52.78" x2="69.17" y2="8.47"/>
-<line fill="none" stroke="#666666" stroke-width="3" x1="36.81" y1="52.78" x2="8.16" y2="11.42"/>
-<line fill="none" stroke="#666666" stroke-width="3" x1="37.44" y1="52.78" x2="58.17" y2="80.7"/>
-<circle fill="#002A7F" stroke="#002A7F" cx="36.41" cy="52.23" r="21.79"/>
-<circle fill="#002A7F" stroke="#002A7F" cx="68.71" cy="8.16" r="7.66"/>
-<circle fill="#002A7F" stroke="#002A7F" cx="8.16" cy="11.42" r="7.66"/>
-<circle fill="#002A7F" stroke="#002A7F" cx="80.71" cy="56.32" r="7.66"/>
-<circle fill="#002A7F" stroke="#002A7F" cx="19.24" cy="106.93" r="7.66"/>
-<circle fill="#002A7F" stroke="#002A7F" cx="57.67" cy="80.9" r="7.66"/>
+<svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" viewBox="0 0 128 128"
+	 overflow="visible" enable-background="new 0 0 128 128" xml:space="preserve">
+<line fill="none" stroke="#666666" stroke-width="3" x1="103.71" y1="64.32" x2="59.17" y2="59.73"/>
+<line fill="none" stroke="#666666" stroke-width="3" x1="42.24" y1="114.93" x2="59.81" y2="60.78"/>
+<line fill="none" stroke="#666666" stroke-width="3" x1="59.81" y1="60.78" x2="92.17" y2="16.47"/>
+<line fill="none" stroke="#666666" stroke-width="3" x1="59.81" y1="60.78" x2="31.16" y2="19.42"/>
+<line fill="none" stroke="#666666" stroke-width="3" x1="60.44" y1="60.78" x2="81.17" y2="88.7"/>
+<circle fill="#4BB7E5" stroke="#4BB7E5" cx="59.41" cy="60.23" r="21.79"/>
+<circle fill="#4BB7E5" stroke="#4BB7E5" cx="91.71" cy="16.16" r="7.66"/>
+<circle fill="#4BB7E5" stroke="#4BB7E5" cx="31.16" cy="19.42" r="7.66"/>
+<circle fill="#4BB7E5" stroke="#4BB7E5" cx="103.71" cy="64.32" r="7.66"/>
+<circle fill="#4BB7E5" stroke="#4BB7E5" cx="42.24" cy="114.93" r="7.66"/>
+<circle fill="#4BB7E5" stroke="#4BB7E5" cx="80.67" cy="88.9" r="7.66"/>
 </svg>
