@@ -16,8 +16,12 @@ export interface ITable
 
 export interface IColumn
 {
-    name: string;
+    dataType: string;
+    defaultValue: string ;
+    isNullable: boolean;
     isPrimaryKey: boolean;
+    maxLength: number;
+    name: string;
 }
 
 export interface ISchemaState

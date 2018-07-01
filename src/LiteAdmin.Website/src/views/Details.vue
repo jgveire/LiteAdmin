@@ -3,11 +3,15 @@
         <h1>{{getFriendlyName(tableName)}} details</h1>
         <div v-for="(column, index) in tableSchema.columns" class="form__group">
             <label :for="column.name" class="form__label">{{getFriendlyName(column.name)}}</label>
-            <input :name="column.name"
+
+            <input :id="column.name"
+                   :name="column.name"
+                   :ref="column.name"
                    :type="getInputType(column.dataType)"
-                   :value="item[column.name]"
+                   v-model="item[column.name]"
                    :maxlength="getMaxLength(column.maxLength)"
-                   class="form__control"/>
+                   class="form__control"
+                   :disabled="column.isPrimaryKey"/>
         </div>
 
         <div class="button__group">

@@ -23,4 +23,15 @@ export class TableDataService extends ApiService
                 .catch(reject);
         });
     }
+
+    public static updateItem(tableName: string, itemId: string, item: any): Promise<any>
+    {
+        return new Promise((resolve, reject) =>
+        {
+            const url = tableName + '/' + itemId;
+            this.httpClient().put(url, item)
+                .then((response) => resolve(response.data))
+                .catch(reject);
+        });
+    }
 }

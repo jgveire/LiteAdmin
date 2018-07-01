@@ -8,6 +8,7 @@ import * as ParamNames from '@/ParamNames';
 import { ITable } from '@/store/SchemaModule';
 import { IColumn } from '@/store/SchemaModule';
 import { ITableItem } from '@/store/TableDataModule';
+import { IUpdateTableItem } from '@/store/TableDataModule';
 import { stringHelper } from '@/helpers/StringHelper';
 
 @Component
@@ -18,6 +19,8 @@ export default class Details extends Vue
     public $router!: VueRouter;
 
     public $route!: Route;
+
+    public $refs!: any;
 
     public mounted(): void
     {
@@ -74,14 +77,14 @@ export default class Details extends Vue
         return 'text';
     }
 
-    public getMaxLength(maxLength: string): string
+    public getMaxLength(maxLength: number): string
     {
-        if (maxLength === '0')
+        if (maxLength === 0)
         {
             return '';
         }
 
-        return maxLength;
+        return maxLength.toString();
     }
 
     public getFriendlyName(columnName: string): string
@@ -89,12 +92,88 @@ export default class Details extends Vue
         return stringHelper.split(columnName);
     }
 
+    public createItem(): any
+    {
+        const obj: any = new Object();
+        for (const column of this.tableSchema.columns)
+        {
+            if (column.dataType === 'Int16' ||
+                column.dataType === 'Int32' ||
+                column.dataType === 'Int64')
+            {
+                let n: number = Number.parseInt(this.$refs[column.name][0].value);
+                if (!Number.isNaN(n))
+                {
+                    obj[column.name] = n;
+                }
+            }
+            else if(column.dataType === 'Decimal' ||
+                column.dataType === 'Float' ||
+                column.dataType === 'Double')
+            {
+                let i: number = Number.parseFloat(this.$refs[column.name][0].value);
+                if (!Number.isNaN(i))
+                {
+                    obj[column.name] = i;
+                }
+            }
+            else if (column.dataType === 'DateTime')
+            {
+                let date: number = Date.parse(this.$refs[column.name][0].value);
+                if (Number.isNaN(date))
+                {
+                    obj[column.name] = date;
+                }
+            }
+            else if (column.dataType === 'Boolean')
+            {
+                return this.stringToBoolean(this.$refs[column.name][0].value);
+            }
+            else
+            {
+                obj[column.name] = this.$refs[column.name][0].value;
+            }
+        }
+
+        return obj;
+    }
+
+    stringToBoolean(value: string): boolean | null
+    {
+        switch (value.toLowerCase().trim())
+        {
+        case "true":
+        case "yes":
+        case "1":
+            return true;
+        case "false":
+        case "no":
+        case "0":
+        case null:
+            return false;
+        default:
+            return null;
+        }
+    }
+
     public save(): void
     {
-
+        const obj: any = this.createItem();
+        const payload: IUpdateTableItem = {
+            tableName: this.tableName,
+            itemId: this.itemId,
+            item: obj,
+        };
+        this.$store.dispatch(ActionTypes.updateTableItem, payload)
+            .then(() => this.close());
     }
 
     public cancel(): void
+    {
+        this.close();
+    }
+
+    public close(): void
     {
         const path: string = '/tables/' + this.tableName;
         this.$router.push(path);

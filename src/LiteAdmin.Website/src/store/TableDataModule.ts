@@ -28,6 +28,11 @@ export interface ITableItem
     itemId: string;
 }
 
+export interface IUpdateTableItem extends  ITableItem
+{
+    item: any;
+}
+
 const actions: ActionTree<ITableDataState, IStoreState> = {
     [ActionTypes.getTableItems](context: ActionContext<ITableDataState, IStoreState>, tableName: string): Promise<void>
     {
@@ -51,8 +56,8 @@ const actions: ActionTree<ITableDataState, IStoreState> = {
 
     [ActionTypes.getTableItem](context: ActionContext<ITableDataState, IStoreState>, payload: ITableItem): Promise<void>
     {
-        context.commit(MutationTypes.updateTableItem, new Object());
         context.commit(MutationTypes.updateTableName, payload.tableName);
+        context.commit(MutationTypes.updateTableItem, new Object());
 
         return new Promise<void>((resolve, reject) =>
         {
@@ -62,6 +67,16 @@ const actions: ActionTree<ITableDataState, IStoreState> = {
                     context.commit(MutationTypes.updateTableItem, item);
                     resolve();
                 })
+                .catch(reject);
+        });
+    },
+
+    [ActionTypes.updateTableItem](context: ActionContext<ITableDataState, IStoreState>, payload: IUpdateTableItem): Promise<void>
+    {
+        return new Promise<void>((resolve, reject) =>
+        {
+            TableDataService.updateItem(payload.tableName, payload.itemId, payload.item)
+                .then(resolve)
                 .catch(reject);
         });
     },

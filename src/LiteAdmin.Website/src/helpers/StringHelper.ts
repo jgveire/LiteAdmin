@@ -2,9 +2,8 @@
 {
     public split(value: string): string
     {
-
         const expression: RegExp = /^[a-z]+|[A-Z][^A-Z]+/g;
-        var items: RegExpMatchArray | null = value.match(expression);
+        const items: RegExpMatchArray | null = value.match(expression);
         if (items == null)
         {
             return '';
