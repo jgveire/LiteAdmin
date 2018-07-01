@@ -101,7 +101,7 @@
                 }
 
                 sql = sql.Substring(0, sql.Length - 1);
-                sql += " WHERE {table.PrimaryKey} = @Identifier";
+                sql += $" WHERE {table.PrimaryKey} = @Identifier";
 
                 var command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Identifier", id);

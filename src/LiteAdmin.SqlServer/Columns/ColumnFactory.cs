@@ -41,7 +41,7 @@
                 { typeof(Int64), typeof(Int64Column) },
                 { typeof(sbyte), typeof(SByteColumn) },
                 { typeof(string), typeof(StringColumn) },
-                { typeof(Guid), typeof(GuidColumn) }
+                { typeof(Guid), typeof(GuidColumn) },
             };
         }
     }

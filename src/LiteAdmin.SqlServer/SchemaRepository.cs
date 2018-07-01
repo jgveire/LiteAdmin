@@ -10,12 +10,15 @@
 
     public class SchemaRepository : ISchemaRepository
     {
-        public string ConnectionString { get; }
-
-        public SchemaRepository(string connectionString)
+        public SchemaRepository(string connectionString, params string[] tables)
         {
+            Tables = tables ?? throw new ArgumentNullException(nameof(tables));
             ConnectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
+
+        public string ConnectionString { get; }
+
+        public string[] Tables { get; }
 
         public ICollection<ITable> GetTables()
         {
@@ -23,13 +26,18 @@
             return GetTables(records);
         }
 
-        private static ICollection<ITable> GetTables(List<ColumnRecord> records)
+        private ICollection<ITable> GetTables(List<ColumnRecord> records)
         {
             var columnFactory = new ColumnFactory();
             var result = new List<ITable>();
             var groupedRecords = records.GroupBy(e => new { e.TableSchema, e.TableName });
             foreach (var groupedRecord in groupedRecords)
             {
+                if (!Tables.Contains(groupedRecord.Key.TableName, StringComparer.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
                 var table = new Table(groupedRecord.Key.TableSchema, groupedRecord.Key.TableName);
                 foreach (var columnRecord in groupedRecord)
                 {
