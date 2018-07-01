@@ -12,7 +12,7 @@ import { IUpdateTableItem } from '@/store/TableDataModule';
 import { stringHelper } from '@/helpers/StringHelper';
 
 @Component
-export default class Details extends Vue
+export default class Edit extends Vue
 {
     public $store!: IStore<IStoreState>;
 
@@ -101,17 +101,17 @@ export default class Details extends Vue
                 column.dataType === 'Int32' ||
                 column.dataType === 'Int64')
             {
-                let n: number = Number.parseInt(this.$refs[column.name][0].value);
+                const n: number = Number.parseInt(this.$refs[column.name][0].value);
                 if (!Number.isNaN(n))
                 {
                     obj[column.name] = n;
                 }
             }
-            else if(column.dataType === 'Decimal' ||
+            else if (column.dataType === 'Decimal' ||
                 column.dataType === 'Float' ||
                 column.dataType === 'Double')
             {
-                let i: number = Number.parseFloat(this.$refs[column.name][0].value);
+                const i: number = Number.parseFloat(this.$refs[column.name][0].value);
                 if (!Number.isNaN(i))
                 {
                     obj[column.name] = i;
@@ -119,7 +119,7 @@ export default class Details extends Vue
             }
             else if (column.dataType === 'DateTime')
             {
-                let date: number = Date.parse(this.$refs[column.name][0].value);
+                const date: number = Date.parse(this.$refs[column.name][0].value);
                 if (Number.isNaN(date))
                 {
                     obj[column.name] = date;
@@ -138,17 +138,17 @@ export default class Details extends Vue
         return obj;
     }
 
-    stringToBoolean(value: string): boolean | null
+    public stringToBoolean(value: string): boolean | null
     {
         switch (value.toLowerCase().trim())
         {
-        case "true":
-        case "yes":
-        case "1":
+        case 'true':
+        case 'yes':
+        case '1':
             return true;
-        case "false":
-        case "no":
-        case "0":
+        case 'false':
+        case 'no':
+        case '0':
         case null:
             return false;
         default:

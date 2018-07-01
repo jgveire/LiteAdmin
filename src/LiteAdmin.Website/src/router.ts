@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home';
 import Table from './views/Table';
-import Details from './views/Details';
+import Edit from '@/views/Edit';
 
 Vue.use(Router);
 
@@ -14,9 +14,9 @@ export default new Router({
             component: Home,
         },
         {
-            path: '/tables/:tableName/details/:id',
-            name: 'details',
-            component: Details,
+            path: '/tables/:tableName/edit/:id',
+            name: 'edit',
+            component: Edit,
         },
         {
             path: '/tables/:tableName',

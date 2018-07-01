@@ -69,7 +69,7 @@
     <Content Include="src\scss\base\_typography.scss" />
     <Content Include="src\scss\vendors\_normalize.scss" />
     <Content Include="src\scss\_shame.scss" />
-    <Content Include="src\views\Details.vue" />
+    <Content Include="src\views\Edit.vue" />
     <Content Include="src\views\Table.vue" />
     <Content Include="src\views\Home.ts" />
     <Content Include="src\views\Home.vue" />
@@ -109,7 +109,7 @@
     <TypeScriptCompile Include="src\store\MutationTypes.ts" />
     <TypeScriptCompile Include="src\store\TableDataModule.ts" />
     <TypeScriptCompile Include="src\store\SchemaModule.ts" />
-    <TypeScriptCompile Include="src\views\Details.ts" />
+    <TypeScriptCompile Include="src\views\Edit.ts" />
     <TypeScriptCompile Include="src\views\Table.ts" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

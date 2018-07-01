@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 <tr v-for="item in items"
-                    v-on:click="showDetails(item)">
+                    v-on:click="edit(item)">
                     <td v-for="(column, index) in tableSchema.columns" 
                         v-if="index < 5 && !column.isPrimaryKey"
                         :key="column.name"                         >

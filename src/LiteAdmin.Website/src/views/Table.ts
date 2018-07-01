@@ -47,14 +47,14 @@ export default class Table extends Vue
         return this.$store.getters.items;
     }
 
-    public showDetails(item: any): void
+    public edit(item: any): void
     {
         for (const column of this.tableSchema.columns)
         {
             if (column.isPrimaryKey)
             {
                 const id: any = item[column.name];
-                const path: string = '/tables/' + this.tableName + '/details/' + id.toString();
+                const path: string = '/tables/' + this.tableName + '/edit/' + id.toString();
                 this.$router.push(path);
                 return;
             }

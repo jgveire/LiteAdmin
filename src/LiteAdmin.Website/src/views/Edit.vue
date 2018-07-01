@@ -1,6 +1,6 @@
 <template>
-    <div class="details">
-        <h1>{{getFriendlyName(tableName)}} details</h1>
+    <div class="edit">
+        <h1>Edit {{getFriendlyName(tableName)}}</h1>
         <div v-for="(column, index) in tableSchema.columns" class="form__group">
             <label :for="column.name" class="form__label">{{getFriendlyName(column.name)}}</label>
 
@@ -21,4 +21,4 @@
     </div>
 </template>
 
-<script lang="ts" src="./Details.ts"></script>
+<script lang="ts" src="./Edit.ts"></script>
