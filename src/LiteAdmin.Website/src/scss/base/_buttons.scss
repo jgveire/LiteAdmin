@@ -7,4 +7,19 @@
     background-color: $button-border-color;
     border: $button-border-width solid $button-border-color;
     border-radius: $button-border-radius;
+    font-size: $button-font-size;
+    font-weight: 700;
+    line-height: $button-line-height;
+    margin-right: 5px;
+
+    &:hover {
+        color: $color-anchor-hover;
+        border-color: $button-border-color-hover;
+    }
+
+    &:focus,
+    &:active {
+        background-color: $button-background-hover;
+        border-color: $button-border-color-active;
+    }
 }

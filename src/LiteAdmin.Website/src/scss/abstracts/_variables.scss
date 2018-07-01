@@ -17,7 +17,7 @@ $global-font-weight-bold: 700;
 // Colors
 $colors: (
     'black': ('dark': #000000, 'default': #030303),
-    'blue': ('dark': #062743, 'default': #113a5d, 'light': lighten(#113a5d, 20%)),
+    'blue': ('dark': darken(#4bb7e5, 5%), 'default': #4bb7e5, 'light': lighten(#4bb7e5, 20%)),
     'grey': ('darker': #333333, 'dark': #888888, 'default': #cccccc, 'light': #eeeeee),
     'lemon': ('dark': darken(#bcdd24, 5%), 'default': #bcdd24, 'light': lighten(#bcdd24, 10%)),
     'red': ('dark': darken(#ff7a8a, 10%), 'default': #ff7a8a, 'light': lighten(#ff7a8a, 20%)),
@@ -29,9 +29,9 @@ $color-primary-dark: map-deep-get($colors, 'blue', 'dark');
 $color-primary: map-deep-get($colors, 'blue', 'default');
 $color-primary-light: map-deep-get($colors, 'blue', 'light');
 
-$color-secondary-dark: map-deep-get($colors, 'turqiouse', 'dark');
-$color-secondary: map-deep-get($colors, 'turqiouse', 'default');
-$color-secondary-light: map-deep-get($colors, 'turqiouse', 'light');
+$color-secondary-dark: map-deep-get($colors, 'grey', 'dark');
+$color-secondary: map-deep-get($colors, 'grey', 'default');
+$color-secondary-light: map-deep-get($colors, 'grey', 'light');
 
 $color-warning-dark: map-deep-get($colors, 'red', 'dark');
 $color-warning: map-deep-get($colors, 'red', 'default');
@@ -40,14 +40,14 @@ $color-warning-light: map-deep-get($colors, 'red', 'light');
 $color-text: map-deep-get($colors, 'grey', 'darker');
 $color-header: $color-text;
 $color-header-alternate: $color-primary;
-$color-anchor: $color-secondary;
-$color-anchor-hover: $color-secondary-light;
-$color-anchor-focus: $color-secondary-light;
+$color-anchor: $color-primary;
+$color-anchor-hover: $color-primary-light;
+$color-anchor-focus: $color-primary-light;
 $color-border: map-deep-get($colors, 'black', 'default');
 
 $color-sets: (
     'primary': (
-        'default': $color-primary,
+        'defaubult': $color-primary,
         'hover': $color-primary-light
     ),
     'secondary': (
@@ -88,7 +88,7 @@ $button-background-hover: map-deep-get($colors, 'blue', 'light');
 $button-border-color: map-deep-get($colors, 'blue', 'default');
 $button-border-color-hover: map-deep-get($colors, 'blue', 'light');
 $button-border-color-active: map-deep-get($colors, 'blue', 'dark');
-$button-border-radius: 3px;
+$button-border-radius: 0;
 $button-border-width: 2px;
 $button-color: map-deep-get($colors, 'white', 'default');
 $button-font-size: rem-calc(14);

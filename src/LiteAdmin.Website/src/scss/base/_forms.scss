@@ -42,7 +42,8 @@
         padding: $form-control-padding;
         width: 100%;
 
-        &--isTouched, &:focus {
+        &--isTouched,
+        &:focus {
             outline: none;
 
             ~ #{$form}__label {

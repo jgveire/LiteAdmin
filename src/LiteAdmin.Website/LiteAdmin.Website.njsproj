@@ -56,7 +56,6 @@
     <Content Include="src\App.scss" />
     <Content Include="src\App.ts" />
     <Content Include="src\App.vue" />
-    <Content Include="src\assets\logo.png" />
     <Content Include="src\components\Navigation.scss" />
     <Content Include="src\components\Navigation.ts" />
     <Content Include="src\components\Navigation.vue" />
