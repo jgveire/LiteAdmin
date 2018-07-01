@@ -16,6 +16,11 @@
     "ordered-imports": false,
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": false,
-    "eofline": false
+    "eofline": false,
+    "max-line-length": {
+      "options": {
+        "limit": 200
+      }
+    }
   }
 }
