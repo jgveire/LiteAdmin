@@ -5,3 +5,4 @@ export const getSchema: string = 'getSchema';
 export const getTableItems: string = 'getTableItems';
 export const getTableItem: string = 'getTableItem';
 export const updateTableItem: string = 'updateTableItem';
+export const addTableItem: string = 'addTableItem';

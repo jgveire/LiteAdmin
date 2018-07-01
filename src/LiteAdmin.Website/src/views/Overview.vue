@@ -13,17 +13,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in items"
-                    v-on:click="edit(item)">
+                <tr v-for="item in items">
                     <td v-for="(column, index) in tableSchema.columns" 
                         v-if="index < 5 && !column.isPrimaryKey"
-                        :key="column.name"                         >
+                        :key="column.name"
+                        v-on:click="edit(item)">
                         {{item[column.name]}}
                     </td>
+
                 </tr>
             </tbody>
         </table>
+        <router-link :to="'/maintain/' + tableName + '/add'" class="button button--primary">Add</router-link>
     </div>
 </template>
 
-<script lang="ts" src="./Table.ts"></script>
+<script lang="ts" src="./Overview.ts"></script>

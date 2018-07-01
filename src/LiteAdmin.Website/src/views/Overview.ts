@@ -10,7 +10,7 @@ import { IColumn } from '@/store/SchemaModule';
 import { stringHelper } from '@/helpers/StringHelper';
 
 @Component
-export default class Table extends Vue
+export default class Overview extends Vue
 {
     public $store!: IStore<IStoreState>;
 
@@ -54,7 +54,7 @@ export default class Table extends Vue
             if (column.isPrimaryKey)
             {
                 const id: any = item[column.name];
-                const path: string = '/tables/' + this.tableName + '/edit/' + id.toString();
+                const path: string = '/maintain/' + this.tableName + '/edit/' + id.toString();
                 this.$router.push(path);
                 return;
             }

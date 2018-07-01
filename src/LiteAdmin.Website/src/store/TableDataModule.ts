@@ -33,6 +33,12 @@ export interface IUpdateTableItem extends  ITableItem
     item: any;
 }
 
+export interface IAddTableItem
+{
+    tableName: string;
+    item: any;
+}
+
 const actions: ActionTree<ITableDataState, IStoreState> = {
     [ActionTypes.getTableItems](context: ActionContext<ITableDataState, IStoreState>, tableName: string): Promise<void>
     {
@@ -76,6 +82,16 @@ const actions: ActionTree<ITableDataState, IStoreState> = {
         return new Promise<void>((resolve, reject) =>
         {
             TableDataService.updateItem(payload.tableName, payload.itemId, payload.item)
+                .then(resolve)
+                .catch(reject);
+        });
+    },
+
+    [ActionTypes.addTableItem](context: ActionContext<ITableDataState, IStoreState>, payload: IAddTableItem): Promise<void>
+    {
+        return new Promise<void>((resolve, reject) =>
+        {
+            TableDataService.addItem(payload.tableName, payload.item)
                 .then(resolve)
                 .catch(reject);
         });

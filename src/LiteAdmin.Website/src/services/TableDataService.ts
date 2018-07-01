@@ -30,7 +30,18 @@ export class TableDataService extends ApiService
         {
             const url = tableName + '/' + itemId;
             this.httpClient().put(url, item)
-                .then((response) => resolve(response.data))
+                .then(resolve)
+                .catch(reject);
+        });
+    }
+
+    public static addItem(tableName: string, item: any): Promise<any>
+    {
+        return new Promise((resolve, reject) =>
+        {
+            const url = tableName;
+            this.httpClient().post(url, item)
+                .then(resolve)
                 .catch(reject);
         });
     }

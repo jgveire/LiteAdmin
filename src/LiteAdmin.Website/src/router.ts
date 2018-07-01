@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home';
-import Table from './views/Table';
+import Overview from '@/views/Overview';
 import Edit from '@/views/Edit';
+import Add from '@/views/Add';
 
 Vue.use(Router);
 
@@ -14,14 +15,19 @@ export default new Router({
             component: Home,
         },
         {
-            path: '/tables/:tableName/edit/:id',
+            path: '/maintain/:tableName/edit/:id',
             name: 'edit',
             component: Edit,
         },
         {
-            path: '/tables/:tableName',
-            name: 'table',
-            component: Table,
+            path: '/maintain/:tableName/add',
+            name: 'add',
+            component: Add,
+        },
+        {
+            path: '/maintain/:tableName',
+            name: 'maintain',
+            component: Overview,
         },
     ],
 });
