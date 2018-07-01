@@ -1,5 +1,6 @@
 ﻿namespace ExampleWebApp
 {
+    using System.Net.Http;
     using LiteAdmin;
     using LiteAdmin.SqlServer;
     using Microsoft.AspNetCore.Builder;
@@ -20,7 +21,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddLiteAdmin(@"Server=.\SQLExpress;Database=Example;Trusted_Connection=True");
+            services.AddLiteAdmin(@"Server=.\SQLExpress;Database=Example;Trusted_Connection=True", "Cars", "Garages", "Test");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,7 +32,12 @@
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:8080"));
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
+            });
 
             app.UseLiteAdmin();
         }
