@@ -19,31 +19,35 @@
             _schemaRepository = schemaRepository ?? throw new ArgumentNullException(nameof(schemaRepository));
         }
 
-        public Task Handle(PathString remainingPath)
+        public async Task Handle(PathString remainingPath)
         {
             var id = GetIdentifier(remainingPath);
             var name = GetControllerName(remainingPath);
             if (string.IsNullOrEmpty(name))
             {
-                return HttpNotFoundResponse();
+                await HttpNotFoundResponse();
             }
             else if (string.Equals(name, "schema", StringComparison.OrdinalIgnoreCase))
             {
                 var schemaHandler = _serviceProvider.GetService<ISchemaHandler>();
                 schemaHandler.Context = Context;
-                return schemaHandler.Handle();
+                await schemaHandler.Handle();
             }
-
-            var tables = _schemaRepository.GetTables();
-            var table = tables.GetTableByName(name);
-            if (table == null)
+            else
             {
-                return HttpNotFoundResponse();
+                var tables = _schemaRepository.GetTables();
+                var table = tables.GetTableByName(name);
+                if (table == null)
+                {
+                    await HttpNotFoundResponse();
+                }
+                else
+                {
+                    var tableCallHandler = _serviceProvider.GetService<ITableCallHandler>();
+                    tableCallHandler.Context = Context;
+                    await tableCallHandler.Handle(table, id);
+                }
             }
-
-            var tableCallHandler = _serviceProvider.GetService<ITableCallHandler>();
-            tableCallHandler.Context = Context;
-            return tableCallHandler.Handle(table, id);
         }
 
         private string GetControllerName(PathString remainingPath)

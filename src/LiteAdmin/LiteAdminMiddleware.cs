@@ -19,7 +19,7 @@
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         }
 
-        public Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             if (context == null)
             {
@@ -30,15 +30,17 @@
             {
                 var apiCallHandler = _serviceProvider.GetService<IApiCallHandler>();
                 apiCallHandler.Context = context;
-                return apiCallHandler.Handle(remaining);
+                await apiCallHandler.Handle(remaining);
             }
             else if (context.Request.Path.StartsWithSegments("/liteadmin", out remaining))
             {
                 var staticFileHandler = _serviceProvider.GetService<IStaticFileHandler>();
-                return staticFileHandler.Handle(context, remaining);
+                await staticFileHandler.Handle(context, remaining);
             }
-
-            return _next(context);
+            else
+            {
+                await _next(context);
+            }
         }
     }
 }

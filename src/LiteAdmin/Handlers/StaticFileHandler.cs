@@ -9,7 +9,7 @@
 
     public class StaticFileHandler : HandlerBase, IStaticFileHandler
     {
-        public Task Handle(HttpContext context, PathString remainingPath)
+        public async Task Handle(HttpContext context, PathString remainingPath)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = GetResourceName(remainingPath);
@@ -18,7 +18,7 @@
             {
                 if (stream == null)
                 {
-                    return PageNotFoundAsync(context);
+                    await PageNotFoundAsync(context);
                 }
 
                 using (StreamReader reader = new StreamReader(stream))
@@ -27,7 +27,7 @@
                     string content = reader.ReadToEnd();
                     var bytes = Encoding.UTF8.GetBytes(content);
                     context.Response.ContentType = contentType;
-                    return context.Response.Body.WriteAsync(bytes, 0, bytes.Length);
+                    await context.Response.Body.WriteAsync(bytes, 0, bytes.Length);
                 }
             }
         }

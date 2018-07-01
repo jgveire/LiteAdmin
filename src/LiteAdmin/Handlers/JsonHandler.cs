@@ -19,14 +19,14 @@
 
         public JsonSerializerSettings SerializerSettings { get; } = CreateSerializerSettings();
 
-        protected Task HttpNotFoundResponse()
+        protected async Task HttpNotFoundResponse()
         {
             var statusCode = (int)HttpStatusCode.NotFound;
             var json = GetErrorJson(JsonErrorCode.MethodNotFound, JsonErrorMessage.MethodNotFound);
             var bytes = Encoding.UTF8.GetBytes(json);
             Response.StatusCode = statusCode;
             Response.ContentType = ContentTypeProvider.Mappings[".json"];
-            return Response.Body.WriteAsync(bytes, 0, bytes.Length);
+            await Response.Body.WriteAsync(bytes, 0, bytes.Length);
         }
 
         protected void HttpNoContentResponse()
@@ -35,14 +35,14 @@
             Response.StatusCode = statusCode;
         }
 
-        protected Task JsonResponse(object data)
+        protected async Task JsonResponse(object data)
         {
             var statusCode = (int)HttpStatusCode.OK;
             string json = JsonConvert.SerializeObject(data, SerializerSettings);
             var bytes = Encoding.UTF8.GetBytes(json);
             Response.StatusCode = statusCode;
             Response.ContentType = ContentTypeProvider.Mappings[".json"];
-            return Response.Body.WriteAsync(bytes, 0, bytes.Length);
+            await Response.Body.WriteAsync(bytes, 0, bytes.Length);
         }
 
         protected Dictionary<string, object> DeserializeJson(string json)

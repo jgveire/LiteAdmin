@@ -15,7 +15,7 @@
             _schemaRepository = schemaRepository ?? throw new ArgumentNullException(nameof(schemaRepository));
         }
 
-        public Task Handle()
+        public async Task Handle()
         {
             var tables = _schemaRepository
                 .GetTables()
@@ -33,7 +33,7 @@
                     }).ToList()
                 });
 
-            return JsonResponse(tables);
+            await JsonResponse(tables);
         }
     }
 }
