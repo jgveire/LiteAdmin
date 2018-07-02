@@ -15,8 +15,8 @@
         </div>
 
         <div class="button__group">
-            <button type="button" v-on:click="save" class="button button__primary">Save</button>
-            <button type="button" v-on:click="cancel" class="button button--grey">Cancel</button>
+            <md-button v-on:click="save">Save</md-button>
+            <md-button v-on:click="cancel">Cancel</md-button>
         </div>
     </div>
 </template>
