@@ -1,0 +1,11 @@
+@import "~vue-material/dist/theme/engine";
+@include md-register-theme("default", (primary: md-get-palette-color(bluegrey, 700), accent: md-get-palette-color(blue, 900)));
+@import "~vue-material/dist/theme/all"; // Apply the theme
+
+.md-app {
+    min-height: 100vh;
+
+    .md-drawer {
+        width: 250px;
+    }
+}

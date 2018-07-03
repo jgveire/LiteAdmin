@@ -1,30 +1,27 @@
 <template>
     <div class="home">
-        <h1>{{getFriendlyName(tableName)}}</h1>
+        <md-table>
+            <md-table-toolbar>
+                <h1 class="md-title">{{getFriendlyName(tableName)}} Overview</h1>
+            </md-table-toolbar>
+            <md-table-row>
+                <md-table-head v-for="(column, index) in tableSchema.columns"
+                               v-if="index < 5 && !column.isPrimaryKey">
+                    {{getFriendlyName(column.name)}}
+                </md-table-head>
+            </md-table-row>
+            <md-table-row v-for="item in items" 
+                          v-on:click="edit(item)">
+                <md-table-cell v-for="(column, index) in tableSchema.columns"
+                               v-if="index < 5 && !column.isPrimaryKey">
+                    {{item[column.name]}}
+                </md-table-cell>
 
-        <table>
-            <thead>
-                <tr>
-                    <th v-for="(column, index) in tableSchema.columns"
-                        v-if="index < 5 && !column.isPrimaryKey"
-                        :key="column.name">
-                        {{getFriendlyName(column.name)}}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in items">
-                    <td v-for="(column, index) in tableSchema.columns" 
-                        v-if="index < 5 && !column.isPrimaryKey"
-                        :key="column.name"
-                        v-on:click="edit(item)">
-                        {{item[column.name]}}
-                    </td>
-
-                </tr>
-            </tbody>
-        </table>
-        <router-link :to="'/maintain/' + tableName + '/add'" class="button button--primary">Add</router-link>
+            </md-table-row>
+        </md-table>
+        <md-button class="md-fab md-fab-bottom-right" :to="'/maintain/' + tableName + '/add'" >
+            <md-icon>add</md-icon>
+        </md-button>
     </div>
 </template>
 

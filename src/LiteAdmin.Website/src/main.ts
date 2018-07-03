@@ -3,13 +3,41 @@ import App from './App';
 import router from './router';
 import store from './store';
 import Navigation from '@/components/Navigation';
-import { MdButton } from 'vue-material/dist/components';
+import {
+    MdApp,
+    MdTable,
+    MdButton,
+    MdField,
+    MdContent,
+    MdMenu,
+    MdLayout,
+    MdDrawer,
+    MdToolbar,
+    MdIcon,
+    MdList,
+    MdCard,
+    MdProgress,
+    MdSnackbar,
+} from 'vue-material/dist/components';
 import 'vue-material/dist/vue-material.min.css';
 
 Vue.config.productionTip = false;
 
 Vue.component('Navigation', Navigation);
+Vue.use(MdApp);
+Vue.use(MdTable);
 Vue.use(MdButton);
+Vue.use(MdField);
+Vue.use(MdContent);
+Vue.use(MdMenu);
+Vue.use(MdLayout);
+Vue.use(MdDrawer);
+Vue.use(MdToolbar);
+Vue.use(MdIcon);
+Vue.use(MdList);
+Vue.use(MdCard);
+Vue.use(MdProgress);
+Vue.use(MdSnackbar);
 
 new Vue({
   router,

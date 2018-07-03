@@ -1,23 +1,29 @@
 <template>
     <div class="edit">
-        <h1>Edit {{getFriendlyName(tableName)}}</h1>
-        <div v-for="(column, index) in tableSchema.columns" class="form__group">
-            <label :for="column.name" class="form__label">{{getFriendlyName(column.name)}}</label>
+        <md-card class="md-layout-item md-small-size-100 md-medium-size-100 md-large-size-66 md-xlarge-size-50">
+            <md-card-header>
+                <div class="md-title">Edit {{getFriendlyName(tableName)}}</div>
+            </md-card-header>
 
-            <input :id="column.name"
-                   :name="column.name"
-                   :ref="column.name"
-                   :type="getInputType(column.dataType)"
-                   v-model="item[column.name]"
-                   :maxlength="getMaxLength(column.maxLength)"
-                   class="form__control"
-                   :disabled="column.isPrimaryKey"/>
-        </div>
+            <md-card-content>
+                <md-field v-for="(column, index) in tableSchema.columns">
+                    <label :for="column.name">{{getFriendlyName(column.name)}}</label>
 
-        <div class="button__group">
-            <md-button v-on:click="save">Save</md-button>
-            <md-button v-on:click="cancel">Cancel</md-button>
-        </div>
+                    <md-input :id="column.name"
+                              :name="column.name"
+                              :ref="column.name"
+                              :type="getInputType(column.dataType)"
+                              v-model="item[column.name]"
+                              :maxlength="getMaxLength(column.maxLength)"
+                              :disabled="column.isPrimaryKey"></md-input>
+                </md-field>
+            </md-card-content>
+
+            <md-card-actions>
+                <md-button v-on:click="save" class="md-raised md-accent">Save</md-button>
+                <md-button v-on:click="cancel" class="md-raised">Cancel</md-button>
+            </md-card-actions>
+        </md-card>
     </div>
 </template>
 

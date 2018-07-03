@@ -56,10 +56,12 @@
     <Content Include="src\App.scss" />
     <Content Include="src\App.ts" />
     <Content Include="src\App.vue" />
+    <Content Include="src\assets\grid.jpg" />
     <Content Include="src\components\Navigation.scss" />
     <Content Include="src\components\Navigation.ts" />
     <Content Include="src\components\Navigation.vue" />
     <Content Include="src\views\Add.vue" />
+    <Content Include="src\views\Home.scss" />
     <Content Include="src\views\Edit.vue" />
     <Content Include="src\views\Overview.vue" />
     <Content Include="src\views\Home.ts" />

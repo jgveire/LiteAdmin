@@ -1,21 +1,35 @@
 <template>
     <div class="edit">
-        <h1>Add {{getFriendlyName(tableName)}}</h1>
-        <div v-for="(column, index) in tableSchema.columns" class="form__group">
-            <label :for="column.name" class="form__label">{{getFriendlyName(column.name)}}</label>
+        <form novalidate class="md-layout" @submit.prevent="validateUser">
+            <md-card class="md-layout-item md-small-size-100 md-medium-size-100 md-large-size-66 md-xlarge-size-50">
+                <md-card-header>
+                    <div class="md-title">Add {{getFriendlyName(tableName)}}</div>
+                </md-card-header>
 
-            <input :id="column.name"
-                   :name="column.name"
-                   :ref="column.name"
-                   :type="getInputType(column.dataType)"
-                   :maxlength="getMaxLength(column.maxLength)"
-                   class="form__control"/>
-        </div>
+                <md-card-content>
+                    <md-field v-for="(column, index) in tableSchema.columns">
+                            <label :for="column.name" class="form__label">{{getFriendlyName(column.name)}}</label>
 
-        <div class="button__group">
-            <button type="button" v-on:click="save" class="button button__primary">Save</button>
-            <button type="button" v-on:click="cancel" class="button button--grey">Cancel</button>
-        </div>
+                            <md-input :id="column.name"
+                                   :name="column.name"
+                                   :ref="column.name"
+                                   :type="getInputType(column.dataType)"
+                                   :maxlength="getMaxLength(column.maxLength)"
+                                   class="form__control" />
+                    </md-field>
+                </md-card-content>
+
+                <md-progress-bar md-mode="indeterminate" v-if="sending" />
+
+                <md-card-actions>
+                    <md-button type="button" v-on:click="save" class="md-raised md-accent">Save</md-button>
+                    <md-button type="button" v-on:click="cancel" class="md-raised">Cancel</md-button>
+                </md-card-actions>
+            </md-card>
+
+            <md-snackbar>The item was saved with success!</md-snackbar>
+        </form>
+
     </div>
 </template>
 

@@ -15,6 +15,13 @@ import FormBase from '@/views/FormBase';
 @Component
 export default class Edit extends FormBase
 {
+    public sending: boolean = false;
+
+    public validateUser(): boolean
+    {
+        return false;
+    }
+
     public save(): void
     {
         const obj: any = this.createItem();
