@@ -12,13 +12,15 @@
                         <md-checkbox v-if="column.dataType == 'Boolean'"
                                      :id="column.name"
                                      :name="column.name"
-                                     v-model="item[column.name]">{{getFriendlyName(column.name)}}</md-checkbox>
+                                     v-model="item[column.name]"
+                                     :required="!column.IsNullable">{{getFriendlyName(column.name)}}</md-checkbox>
                         <md-datepicker v-else-if="column.dataType == 'DateTime'"
                                        :id="column.name"
                                        :name="column.name"
                                        v-model="item[column.name]"
                                        :maxlength="getMaxLength(column.maxLength)"
-                                       :md-open-on-focus="false">
+                                       :md-open-on-focus="false"
+                                       :required="!column.IsNullable">
                             <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                         </md-datepicker>
                         <md-field v-else>
@@ -26,7 +28,8 @@
                             <md-input :id="column.name"
                                       :name="column.name"
                                       v-model="item[column.name]"
-                                      :maxlength="getMaxLength(column.maxLength)"></md-input>
+                                      :maxlength="getMaxLength(column.maxLength)"
+                                      :required="!column.IsNullable"></md-input>
                         </md-field>
                     </div>
                 </md-card-content>

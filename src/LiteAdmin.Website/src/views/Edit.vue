@@ -12,7 +12,8 @@
                                  :id="column.name"
                                  :name="column.name"
                                  :ref="column.name"
-                                 v-model="item[column.name]">{{getFriendlyName(column.name)}}</md-checkbox>
+                                 v-model="item[column.name]"
+                                 :required="!column.IsNullable">{{getFriendlyName(column.name)}}</md-checkbox>
                     <md-datepicker v-else-if="column.dataType == 'DateTime'"
                                     :id="column.name"
                                     :name="column.name"
@@ -20,7 +21,8 @@
                                     v-model="item[column.name]"
                                     :maxlength="getMaxLength(column.maxLength)"
                                     :disabled="column.isPrimaryKey"
-                                    :md-open-on-focus="false">
+                                    :md-open-on-focus="false"                                   
+                                     :required="!column.IsNullable">
                         <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                     </md-datepicker>
                     <md-field v-else>
@@ -30,7 +32,8 @@
                                   :ref="column.name"
                                   v-model="item[column.name]"
                                   :maxlength="getMaxLength(column.maxLength)"
-                                  :disabled="column.isPrimaryKey"></md-input>
+                                  :disabled="column.isPrimaryKey"
+                                  :required="!column.IsNullable"></md-input>
                     </md-field>
 
                 </div>
