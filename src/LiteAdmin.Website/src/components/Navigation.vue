@@ -4,7 +4,9 @@
             <li class="navigation__item">
                 <router-link to="/">Home</router-link>
             </li>
-            <li class="navigation__item" v-for="table in tables">
+            <li class="navigation__item" 
+                v-for="table in tables"
+                :key="table.name">
                 <router-link :to="'/maintain/' + table.name" class="navigation__link">{{table.name}}</router-link>
             </li>
         </ul>

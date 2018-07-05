@@ -106,13 +106,43 @@ export default class FormBase extends Vue
                     obj[column.name] = date;
                 }
             }
-            else if (column.dataType === 'Boolean')
-            {
-                return this.stringToBoolean(this.$refs[column.name][0].value);
-            }
             else
             {
                 obj[column.name] = this.$refs[column.name][0].value;
+            }
+        }
+
+        return obj;
+    }
+
+    public createNewItem(): any
+    {
+        const obj: any = new Object();
+        for (const column of this.tableSchema.columns)
+        {
+            if (column.dataType === 'Int16' ||
+                column.dataType === 'Int32' ||
+                column.dataType === 'Int64')
+            {
+                obj[column.name] = null;
+            }
+            else if (column.dataType === 'Decimal' ||
+                column.dataType === 'Float' ||
+                column.dataType === 'Double')
+            {
+                obj[column.name] = null;
+            }
+            else if (column.dataType === 'DateTime')
+            {
+                obj[column.name] = null;
+            }
+            else if (column.dataType === 'Boolean')
+            {
+                obj[column.name] = false;
+            }
+            else
+            {
+                obj[column.name] = null;
             }
         }
 

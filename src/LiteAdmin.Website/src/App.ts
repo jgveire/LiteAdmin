@@ -1,4 +1,4 @@
-import { Vue } from 'vue-property-decorator';
+import { Vue, Watch } from 'vue-property-decorator';
 import { Component} from 'vue-property-decorator';
 import { ITable } from '@/store/SchemaModule';
 import { IStore } from '@/store';
@@ -10,6 +10,8 @@ export default class App extends Vue
 {
     public $store!: IStore<IStoreState>;
 
+    public showSnackbar: boolean = false;
+
     public created(): void
     {
         this.$store.dispatch(ActionTypes.getSchema);
@@ -18,5 +20,21 @@ export default class App extends Vue
     public get tables(): ITable[]
     {
         return this.$store.getters.tables;
+    }
+
+    public get showSnackbarFromStore(): boolean
+    {
+        return this.$store.getters.showSnackbar;
+    }
+
+    @Watch('showSnackbarFromStore')
+    public showSnackbarWatch(value: boolean): void
+    {
+        this.showSnackbar = value;
+    }
+
+    public get snackbarMessage(): string
+    {
+        return this.$store.getters.snackbarMessage;
     }
 }

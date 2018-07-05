@@ -2,6 +2,7 @@
     <div class="home">
         <md-card md-with-hover 
                  v-for="table in tables"
+                 :key="table.name"
                  @click.native="cardClick" 
                  :data-table-name="table.name">
             <md-card-media-cover md-text-scrim>
@@ -22,3 +23,4 @@
 
 <script lang="ts" src="./Home.ts"></script>
 <style lang="scss" src="./Home.scss"></style>
+ 

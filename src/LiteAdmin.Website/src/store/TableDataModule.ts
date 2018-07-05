@@ -96,6 +96,20 @@ const actions: ActionTree<ITableDataState, IStoreState> = {
                 .catch(reject);
         });
     },
+
+    [ActionTypes.deleteTableItem](context: ActionContext<ITableDataState, IStoreState>, payload: ITableItem): Promise<void>
+    {
+        return new Promise<void>((resolve, reject) =>
+        {
+            TableDataService.deleteItem(payload.tableName, payload.itemId)
+                .then(() =>
+                {
+                    context.commit(MutationTypes.deleteItem, payload);
+                    resolve();
+                })
+                .catch(reject);
+        });
+    },
 };
 
 const getters: GetterTree<ITableDataState, IStoreState> = {
@@ -125,6 +139,19 @@ const mutations: MutationTree<ITableDataState> = {
     [MutationTypes.updateTableName](state: ITableDataState, tableName: string): void
     {
         state.tableName = tableName;
+    },
+
+    [MutationTypes.deleteItem](state: ITableDataState, payload: ITableItem): void
+    {
+        if (state.tableName === payload.tableName)
+        {
+            const item = state.items.filter(item => item['id'] == payload.itemId);
+            if (item !== null)
+            {
+                
+            }
+
+        }
     },
 };
 

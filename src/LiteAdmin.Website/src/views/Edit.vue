@@ -6,17 +6,34 @@
             </md-card-header>
 
             <md-card-content>
-                <md-field v-for="(column, index) in tableSchema.columns">
-                    <label :for="column.name">{{getFriendlyName(column.name)}}</label>
+                <div v-for="(column, index) in tableSchema.columns"
+                     :key="column.name">
+                    <md-checkbox v-if="column.dataType == 'Boolean'"
+                                 :id="column.name"
+                                 :name="column.name"
+                                 :ref="column.name"
+                                 v-model="item[column.name]">{{getFriendlyName(column.name)}}</md-checkbox>
+                    <md-datepicker v-else-if="column.dataType == 'DateTime'"
+                                    :id="column.name"
+                                    :name="column.name"
+                                    :ref="column.name"
+                                    v-model="item[column.name]"
+                                    :maxlength="getMaxLength(column.maxLength)"
+                                    :disabled="column.isPrimaryKey"
+                                    :md-open-on-focus="false">
+                        <label :for="column.name">{{getFriendlyName(column.name)}}</label>
+                    </md-datepicker>
+                    <md-field v-else>
+                        <label :for="column.name">{{getFriendlyName(column.name)}}</label>
+                        <md-input :id="column.name"
+                                  :name="column.name"
+                                  :ref="column.name"
+                                  v-model="item[column.name]"
+                                  :maxlength="getMaxLength(column.maxLength)"
+                                  :disabled="column.isPrimaryKey"></md-input>
+                    </md-field>
 
-                    <md-input :id="column.name"
-                              :name="column.name"
-                              :ref="column.name"
-                              :type="getInputType(column.dataType)"
-                              v-model="item[column.name]"
-                              :maxlength="getMaxLength(column.maxLength)"
-                              :disabled="column.isPrimaryKey"></md-input>
-                </md-field>
+                </div>
             </md-card-content>
 
             <md-card-actions>

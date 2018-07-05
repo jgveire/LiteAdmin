@@ -7,16 +7,28 @@
                 </md-card-header>
 
                 <md-card-content>
-                    <md-field v-for="(column, index) in tableSchema.columns">
-                            <label :for="column.name" class="form__label">{{getFriendlyName(column.name)}}</label>
-
+                    <div v-for="(column, index) in tableSchema.columns"
+                         :key="column.name">
+                        <md-checkbox v-if="column.dataType == 'Boolean'"
+                                     :id="column.name"
+                                     :name="column.name"
+                                     v-model="item[column.name]">{{getFriendlyName(column.name)}}</md-checkbox>
+                        <md-datepicker v-else-if="column.dataType == 'DateTime'"
+                                       :id="column.name"
+                                       :name="column.name"
+                                       v-model="item[column.name]"
+                                       :maxlength="getMaxLength(column.maxLength)"
+                                       :md-open-on-focus="false">
+                            <label :for="column.name">{{getFriendlyName(column.name)}}</label>
+                        </md-datepicker>
+                        <md-field v-else>
+                            <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                             <md-input :id="column.name"
-                                   :name="column.name"
-                                   :ref="column.name"
-                                   :type="getInputType(column.dataType)"
-                                   :maxlength="getMaxLength(column.maxLength)"
-                                   class="form__control" />
-                    </md-field>
+                                      :name="column.name"
+                                      v-model="item[column.name]"
+                                      :maxlength="getMaxLength(column.maxLength)"></md-input>
+                        </md-field>
+                    </div>
                 </md-card-content>
 
                 <md-progress-bar md-mode="indeterminate" v-if="sending" />

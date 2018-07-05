@@ -45,4 +45,15 @@ export class TableDataService extends ApiService
                 .catch(reject);
         });
     }
+
+    public static deleteItem(tableName: string, id: string): Promise<any>
+    {
+        return new Promise((resolve, reject) =>
+        {
+            const url = tableName + '/' + id;
+            this.httpClient().delete(url)
+                .then(resolve)
+                .catch(reject);
+        });
+    }
 }

@@ -16,8 +16,8 @@ export default class Home extends Vue
 
     public cardClick(event: MouseEvent): void
     {
-        var tableName: string | null = null;
-        var element: Element | null = event.srcElement;
+        let tableName: string | null = null;
+        let element: Element | null = event.srcElement;
         while (tableName === null && element !== null)
         {
             tableName = element.getAttribute('data-table-name');

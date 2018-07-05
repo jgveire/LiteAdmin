@@ -7,7 +7,7 @@
         private readonly string _defaultValue;
 
         public GuidColumn(string name, bool isNullable, int maxLength, string defaultValue, bool isPrimaryKey)
-            : base(name, isNullable, maxLength, isPrimaryKey)
+            : base(name, isNullable, 36, isPrimaryKey)
         {
             _defaultValue = defaultValue;
         }

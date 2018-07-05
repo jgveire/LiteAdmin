@@ -8,6 +8,7 @@ import * as ParamNames from '@/ParamNames';
 import { ITable } from '@/store/SchemaModule';
 import { IColumn } from '@/store/SchemaModule';
 import { stringHelper } from '@/helpers/StringHelper';
+import { ITableItem } from '@/store/TableDataModule';
 
 @Component
 export default class Overview extends Vue
@@ -17,6 +18,10 @@ export default class Overview extends Vue
     public $router!: VueRouter;
 
     public $route!: Route;
+
+    public showDialog: boolean = false;
+
+    public selectedItemId: string = '';
 
     public created(): void
     {
@@ -42,6 +47,19 @@ export default class Overview extends Vue
         };
     }
 
+    public get tableKey(): string
+    {
+        for (const column of this.tableSchema.columns)
+        {
+            if (column.isPrimaryKey)
+            {
+                return column.name;
+            }
+        }
+
+        return 'id';
+    }
+
     public get items(): any[]
     {
         return this.$store.getters.items;
@@ -64,5 +82,25 @@ export default class Overview extends Vue
     public getFriendlyName(name: string): string
     {
         return stringHelper.split(name);
+    }
+
+    public removeItem(id: string): void
+    {
+        this.selectedItemId = id;
+        this.showDialog = true;
+    }
+
+    public confirm(): void
+    {
+        const payload: ITableItem = {
+            itemId: this.selectedItemId,
+            tableName: this.tableName,
+        };
+        this.$store.dispatch(ActionTypes.deleteTableItem, payload   );
+    }
+
+    public cancel(): void
+    {
+        this.showDialog = false;
     }
 }

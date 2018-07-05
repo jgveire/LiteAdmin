@@ -18,6 +18,10 @@ import {
     MdCard,
     MdProgress,
     MdSnackbar,
+    MdCheckbox,
+    MdDatepicker,
+    MdDialog,
+    MdDialogConfirm,
 } from 'vue-material/dist/components';
 import 'vue-material/dist/vue-material.min.css';
 
@@ -38,6 +42,10 @@ Vue.use(MdList);
 Vue.use(MdCard);
 Vue.use(MdProgress);
 Vue.use(MdSnackbar);
+Vue.use(MdCheckbox);
+Vue.use(MdDatepicker);
+Vue.use(MdDialog);
+Vue.use(MdDialogConfirm);
 
 new Vue({
   router,

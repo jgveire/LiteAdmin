@@ -2,6 +2,9 @@
 import { AxiosInstance } from 'axios';
 import { AxiosResponse } from 'axios';
 import { AxiosError } from 'axios';
+import { Store } from 'vuex';
+import * as ActionTypes from '@/store/ActionTypes';
+import store from '@/store';
 
 const dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z?$/;
 
@@ -40,7 +43,7 @@ export default class ApiService
             },
             (error: AxiosError): Promise<AxiosError> =>
             {
-                alert(error);
+                store.dispatch(ActionTypes.showSnackbar, error.message);
                 return Promise.reject(error);
             });
 

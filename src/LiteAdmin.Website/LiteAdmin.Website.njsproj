@@ -61,6 +61,7 @@
     <Content Include="src\components\Navigation.ts" />
     <Content Include="src\components\Navigation.vue" />
     <Content Include="src\views\Add.vue" />
+    <Content Include="src\views\Overview.scss" />
     <Content Include="src\views\Home.scss" />
     <Content Include="src\views\Edit.vue" />
     <Content Include="src\views\Overview.vue" />
@@ -98,6 +99,7 @@
     <TypeScriptCompile Include="src\store\ActionTypes.ts" />
     <TypeScriptCompile Include="src\store\index.ts" />
     <TypeScriptCompile Include="src\store\MutationTypes.ts" />
+    <TypeScriptCompile Include="src\store\SnackbarModule.ts" />
     <TypeScriptCompile Include="src\store\TableDataModule.ts" />
     <TypeScriptCompile Include="src\store\SchemaModule.ts" />
     <TypeScriptCompile Include="src\typings\vue-material\index.d.ts" />

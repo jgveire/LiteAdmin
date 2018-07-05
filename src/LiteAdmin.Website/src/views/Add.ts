@@ -17,6 +17,13 @@ export default class Edit extends FormBase
 {
     public sending: boolean = false;
 
+    public item: any = new Object();
+
+    public mounted(): void
+    {
+        this.item = this.createNewItem();
+    }
+
     public validateUser(): boolean
     {
         return false;
@@ -24,10 +31,9 @@ export default class Edit extends FormBase
 
     public save(): void
     {
-        const obj: any = this.createItem();
         const payload: IAddTableItem = {
             tableName: this.tableName,
-            item: obj,
+            item: this.item,
         };
         this.$store.dispatch(ActionTypes.addTableItem, payload)
             .then(() => this.close());
