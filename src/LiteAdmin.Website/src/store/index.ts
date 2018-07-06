@@ -55,6 +55,7 @@ const store: IStore<IStoreState> = new Vuex.Store<IStoreState>({
         snackbar: {
             showSnackbar: false,
             snackbarMessage: '',
+            timeoutId: 0,
         }
     },
     actions,

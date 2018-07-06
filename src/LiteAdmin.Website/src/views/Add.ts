@@ -10,6 +10,7 @@ import { IColumn } from '@/store/SchemaModule';
 import { ITableItem } from '@/store/TableDataModule';
 import { IAddTableItem } from '@/store/TableDataModule';
 import { stringHelper } from '@/helpers/StringHelper';
+import { guidHelper } from '@/helpers/GuidHelper';
 import FormBase from '@/views/FormBase';
 
 @Component
@@ -42,5 +43,10 @@ export default class Edit extends FormBase
     public cancel(): void
     {
         this.close();
+    }
+
+    public generateGuid(columnName: string)
+    {
+        this.item[columnName] = guidHelper.generate();
     }
 }

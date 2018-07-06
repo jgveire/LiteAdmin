@@ -1,0 +1,9 @@
+label.md-required:after {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    transform: translateX(calc(100% + 2px));
+    content: "*";
+    line-height: 1em;
+    vertical-align: top;
+}

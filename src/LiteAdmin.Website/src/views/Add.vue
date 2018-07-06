@@ -13,14 +13,15 @@
                                      :id="column.name"
                                      :name="column.name"
                                      v-model="item[column.name]"
-                                     :required="!column.IsNullable">{{getFriendlyName(column.name)}}</md-checkbox>
+                                     :required="!column.isNullable">{{getFriendlyName(column.name)}}</md-checkbox>
                         <md-datepicker v-else-if="column.dataType == 'DateTime'"
                                        :id="column.name"
                                        :name="column.name"
                                        v-model="item[column.name]"
                                        :maxlength="getMaxLength(column.maxLength)"
                                        :md-open-on-focus="false"
-                                       :required="!column.IsNullable">
+                                       :required="!column.isNullable"
+                                       :class="column.isNullable ? '' : 'md-required'">
                             <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                         </md-datepicker>
                         <md-field v-else>
@@ -29,7 +30,12 @@
                                       :name="column.name"
                                       v-model="item[column.name]"
                                       :maxlength="getMaxLength(column.maxLength)"
-                                      :required="!column.IsNullable"></md-input>
+                                      :required="!column.isNullable"></md-input>
+                            <md-button v-if="column.dataType == 'Guid' && column.isPrimaryKey" 
+                                       class="md-icon-button md-dense"
+                                       v-on:click="generateGuid(column.name)">
+                                <md-icon>cached</md-icon>
+                            </md-button>
                         </md-field>
                     </div>
                 </md-card-content>
@@ -37,8 +43,8 @@
                 <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
                 <md-card-actions>
-                    <md-button type="button" v-on:click="save" class="md-raised md-accent">Save</md-button>
-                    <md-button type="button" v-on:click="cancel" class="md-raised">Cancel</md-button>
+                    <md-button type="button" v-on:click="cancel" class="">Cancel</md-button>
+                    <md-button type="button" v-on:click="save" class="md-primary">Save</md-button>
                 </md-card-actions>
             </md-card>
 

@@ -20,13 +20,13 @@
                     {{item[column.name]}}
                 </md-table-cell>
                 <md-table-cell>
-                    <md-button class="md-icon-button md-accent" v-on:click.stop="removeItem(item[tableKey])">
+                    <md-button class="md-icon-button md-primary" v-on:click.stop="removeItem(item[tableKey])">
                         <md-icon class="">delete</md-icon>
                     </md-button>
                 </md-table-cell>
             </md-table-row>
         </md-table>
-        <md-button class="md-fab md-fab-bottom-right" :to="'/maintain/' + tableName + '/add'">
+        <md-button class="md-fab md-fab-bottom-right md-primary" :to="'/maintain/' + tableName + '/add'">
             <md-icon>add</md-icon>
         </md-button>
 

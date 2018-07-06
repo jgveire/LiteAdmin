@@ -3,23 +3,41 @@
         <div class="page-container">
             <md-app>
                 <md-app-toolbar class="md-primary">
-                    <router-link to="/" class="md-title">LiteAdmin</router-link>
+                    <div class="md-toolbar-row">
+                        <div class="md-toolbar-section-start">
+                            <md-button class="md-icon-button" @click="toggleMenu" v-if="!showMenu">
+                                <md-icon>menu</md-icon>
+                            </md-button>
+                            <router-link to="/" class="md-title">
+                                <img src="./assets/logo.svg" alt="LiteAdmin" class="logo" />
+                                LiteAdmin
+                            </router-link>
+                        </div>
+                    </div>
                 </md-app-toolbar>
 
-                <md-app-drawer md-permanent="clipped">
+                <md-app-drawer md-persistent="full" :md-active.sync="showMenu">
+                    <md-toolbar class="md-transparent" md-elevation="0">
+                        <span>Navigation</span>
+
+                        <div class="md-toolbar-section-end">
+                            <md-button class="md-icon-button md-dense" @click="toggleMenu">
+                                <md-icon>keyboard_arrow_left</md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
 
                     <md-list>
                         <md-list-item>
-                            <md-icon>home</md-icon>
                             <router-link to="/" class="md-list-item-text">Home</router-link>
                         </md-list-item>
 
                         <md-list-item v-for="table in tables"
-                                        :key="table.name">
-                            <md-icon>reorder</md-icon>
+                                      :key="table.name">
                             <router-link :to="'/maintain/' + table.name" class="md-list-item-text">{{table.name}}</router-link>
                         </md-list-item>
                     </md-list>
+
                 </md-app-drawer>
 
                 <md-app-content>

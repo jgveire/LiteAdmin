@@ -12,6 +12,8 @@ export default class App extends Vue
 
     public showSnackbar: boolean = false;
 
+    public showMenu: boolean = false;
+
     public created(): void
     {
         this.$store.dispatch(ActionTypes.getSchema);
@@ -36,5 +38,10 @@ export default class App extends Vue
     public get snackbarMessage(): string
     {
         return this.$store.getters.snackbarMessage;
+    }
+
+    public toggleMenu(): void
+    {
+        this.showMenu = !this.showMenu;
     }
 }

@@ -57,10 +57,12 @@
     <Content Include="src\App.ts" />
     <Content Include="src\App.vue" />
     <Content Include="src\assets\grid.jpg" />
+    <Content Include="src\assets\logo.svg" />
     <Content Include="src\components\Navigation.scss" />
     <Content Include="src\components\Navigation.ts" />
     <Content Include="src\components\Navigation.vue" />
     <Content Include="src\views\Add.vue" />
+    <Content Include="src\views\Edit.scss" />
     <Content Include="src\views\Overview.scss" />
     <Content Include="src\views\Home.scss" />
     <Content Include="src\views\Edit.vue" />
@@ -86,6 +88,7 @@
     <Folder Include="src\views\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\helpers\GuidHelper.ts" />
     <TypeScriptCompile Include="src\helpers\StringHelper.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\ParamNames.ts" />
