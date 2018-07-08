@@ -8,9 +8,16 @@
     .md-drawer {
         width: 250px;
     }
-}
 
-.logo {
-    width: 26px;
-    heightL: 26px;
+    .md-toolbar.md-theme-default.md-primary .md-title {
+        &:hover {
+            color: #e0e0e0;
+            text-decoration: none;
+        }
+    }
+
+    .logo {
+        width: 26px;
+        heightL: 26px;
+    }
 }

@@ -22,6 +22,7 @@ import {
     MdDatepicker,
     MdDialog,
     MdDialogConfirm,
+    MdAutocomplete,
 } from 'vue-material/dist/components';
 import 'vue-material/dist/vue-material.min.css';
 
@@ -46,6 +47,7 @@ Vue.use(MdCheckbox);
 Vue.use(MdDatepicker);
 Vue.use(MdDialog);
 Vue.use(MdDialogConfirm);
+Vue.use(MdAutocomplete);
 
 new Vue({
   router,

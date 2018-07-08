@@ -5,13 +5,15 @@
                 <md-app-toolbar class="md-primary">
                     <div class="md-toolbar-row">
                         <div class="md-toolbar-section-start">
-                            <md-button class="md-icon-button" @click="toggleMenu" v-if="!showMenu">
-                                <md-icon>menu</md-icon>
-                            </md-button>
                             <router-link to="/" class="md-title">
                                 <img src="./assets/logo.svg" alt="LiteAdmin" class="logo" />
                                 LiteAdmin
                             </router-link>
+                        </div>
+                        <div class="md-toolbar-section-end">
+                            <md-button class="md-icon-button" @click="toggleMenu">
+                                <md-icon>menu</md-icon>
+                            </md-button>
                         </div>
                     </div>
                 </md-app-toolbar>

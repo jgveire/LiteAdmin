@@ -49,4 +49,8 @@ export default class Edit extends FormBase
     {
         this.item[columnName] = guidHelper.generate();
     }
+
+    public getForeignItems(tableName: string): void
+    {
+    }
 }

@@ -35,6 +35,13 @@
             Response.StatusCode = statusCode;
         }
 
+
+        protected void HttpUnauthorizedResponse()
+        {
+            var statusCode = (int)HttpStatusCode.Unauthorized;
+            Response.StatusCode = statusCode;
+        }
+
         protected async Task JsonResponse(object data)
         {
             var statusCode = (int)HttpStatusCode.OK;

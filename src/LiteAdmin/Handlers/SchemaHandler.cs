@@ -29,7 +29,9 @@
                         DefaultValue = c.DefaultValue?.ToString(),
                         IsNullable = c.IsNullable,
                         MaxLength = c.MaxLength,
-                        IsPrimaryKey = c.IsPrimaryKey
+                        IsPrimaryKey = c.IsPrimaryKey,
+                        ForeignTable = c.ForeignTable,
+                        ForeignKey = c.ForeignKey
                     }).ToList()
                 });
 

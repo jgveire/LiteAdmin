@@ -24,6 +24,19 @@
                                        :class="column.isNullable ? '' : 'md-required'">
                             <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                         </md-datepicker>
+                        <!--<md-autocomplete v-else-if="column.foreignKey"
+                                         v-model="item[column.name]"
+                                         :md-options="countries"
+                                         @md-changed="getForeignItems(column.foreignTable)"
+                                         @md-opened="getForeignItems(column.foreignTable)">
+                            <label :for="column.name">{{getFriendlyName(column.name)}}</label>
+                            <template slot="md-autocomplete-empty" slot-scope="{ item }">
+                                ...
+                            </template>
+                            <template slot="md-autocomplete-item" slot-scope="{ item }">
+                                {{ item.name }}
+                            </template>
+                        </md-autocomplete>-->
                         <md-field v-else>
                             <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                             <md-input :id="column.name"
@@ -31,7 +44,7 @@
                                       v-model="item[column.name]"
                                       :maxlength="getMaxLength(column.maxLength)"
                                       :required="!column.isNullable"></md-input>
-                            <md-button v-if="column.dataType == 'Guid' && column.isPrimaryKey" 
+                            <md-button v-if="column.dataType == 'Guid' && column.isPrimaryKey"
                                        class="md-icon-button md-dense"
                                        v-on:click="generateGuid(column.name)">
                                 <md-icon>cached</md-icon>

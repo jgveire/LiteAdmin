@@ -6,6 +6,10 @@
 
         public string DefaultValue { get; set; }
 
+        public string ForeignKey { get; set; }
+
+        public string ForeignTable { get; set; }
+
         public bool IsNullable { get; set; }
 
         public bool IsPrimaryKey { get; set; }

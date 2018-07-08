@@ -40,13 +40,17 @@
 
         public bool IsNullable { get; set; }
 
-        public bool IsPrimaryKey { get; }
+        public bool IsPrimaryKey { get; set; }
 
         public int MaximumLength { get; set; }
 
         public string TableName { get; set; }
 
         public string TableSchema { get; set; }
+
+        public string ForeignKey { get; set; }
+
+        public string ForeignTable { get; set; }
 
         private Type ConvertToType(string dataType)
         {

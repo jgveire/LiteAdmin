@@ -8,19 +8,42 @@
 
     public class ApiCallHandler : JsonHandler, IApiCallHandler
     {
+        private readonly LiteAdminOptions _options;
         private readonly IServiceProvider _serviceProvider;
         private readonly ISchemaRepository _schemaRepository;
 
         public ApiCallHandler(
+            LiteAdminOptions options,
             IServiceProvider serviceProvider,
             ISchemaRepository schemaRepository)
         {
+            _options = options ?? throw new ArgumentNullException(nameof(options));
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
             _schemaRepository = schemaRepository ?? throw new ArgumentNullException(nameof(schemaRepository));
         }
 
         public async Task Handle(PathString remainingPath)
         {
+            if (!string.IsNullOrEmpty(_options.Username))
+            {
+                if (!Context.User.Identity.IsAuthenticated ||
+                    !string.Equals(Context.User.Identity.Name, _options.Username, StringComparison.OrdinalIgnoreCase))
+                {
+                    HttpUnauthorizedResponse();
+                    return;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(_options.Role))
+            {
+                if (!Context.User.Identity.IsAuthenticated ||
+                    !Context.User.IsInRole(_options.Role))
+                {
+                    HttpUnauthorizedResponse();
+                    return;
+                }
+            }
+
             var id = GetIdentifier(remainingPath);
             var name = GetControllerName(remainingPath);
             if (string.IsNullOrEmpty(name))
