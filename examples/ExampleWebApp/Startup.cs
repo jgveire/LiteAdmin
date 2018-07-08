@@ -1,6 +1,5 @@
 ﻿namespace ExampleWebApp
 {
-    using System.Net.Http;
     using LiteAdmin;
     using LiteAdmin.SqlServer;
     using Microsoft.AspNetCore.Builder;
@@ -21,7 +20,11 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddLiteAdmin(@"Server=.\SQLExpress;Database=Example;Trusted_Connection=True", "Cars", "Garages", "Test");
+            LiteAdminOptions options = new LiteAdminOptions
+            {
+                Tables = new string[] { "Cars", "Garages", "Test" }
+            };
+            services.AddLiteAdmin(@"Server=.\SQLExpress;Database=Example;Trusted_Connection=True", options);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
