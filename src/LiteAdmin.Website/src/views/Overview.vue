@@ -7,16 +7,17 @@
             <md-table-row>
                 <md-table-head v-for="(column, index) in tableSchema.columns"
                                :key="column.name"
-                               v-if="index < 5 && !column.isPrimaryKey">
+                               v-if="index < 6 && !column.isPrimaryKey">
                     {{getFriendlyName(column.name)}}
                 </md-table-head>
+                <md-table-head></md-table-head>
             </md-table-row>
             <md-table-row v-for="item in items"
                           :key="item[tableKey]"
                           v-on:click="edit(item)">
                 <md-table-cell v-for="(column, index) in tableSchema.columns"
                                :key="column.name"
-                               v-if="index < 5 && !column.isPrimaryKey">
+                               v-if="index < 6 && !column.isPrimaryKey">
                     {{item[column.name]}}
                 </md-table-cell>
                 <md-table-cell>
