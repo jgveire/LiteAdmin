@@ -23,6 +23,7 @@ import {
     MdDialog,
     MdDialogConfirm,
     MdAutocomplete,
+    MdRipple,
 } from 'vue-material/dist/components';
 import 'vue-material/dist/vue-material.min.css';
 
@@ -48,6 +49,7 @@ Vue.use(MdDatepicker);
 Vue.use(MdDialog);
 Vue.use(MdDialogConfirm);
 Vue.use(MdAutocomplete);
+Vue.use(MdRipple);
 
 new Vue({
   router,
