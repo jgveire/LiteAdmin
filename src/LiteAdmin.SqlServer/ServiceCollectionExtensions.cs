@@ -19,6 +19,7 @@
             services.AddTransient<IStaticFileHandler, StaticFileHandler>();
             services.AddTransient<ITableCallHandler, TableCallHandler>();
             services.AddTransient<ISchemaHandler, SchemaHandler>();
+            services.AddTransient<ILookupCallHandler, LookupCallHandler>();
             return services;
         }
     }

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data.Common;
     using System.Data.SqlClient;
+    using System.Linq;
     using System.Threading.Tasks;
     using Core;
     public class DatabaseRepository : IDatabaseRepository
@@ -90,29 +91,36 @@
             return records;
         }
 
-        public async Task UpdateItemAsync(ITable table, string id, Dictionary<string, object> dictionary)
+        public async Task<IEnumerable<LookupModel>> GetLookupItems(ITable table)
         {
+            var items = new List<LookupModel>();
+            var idColumn = GetIdColumnName(table);
+            var nameColumn = GetNameColumnName(table);
+            if (idColumn == null)
+            {
+                throw new InvalidOperationException($"The table {table.Name} does not have a primary key.");
+            }
+
+            string sql = $"SELECT {idColumn} AS Id, {nameColumn} AS Name FROM {table.Name}";
             using (var connection = new SqlConnection(ConnectionString))
             {
-                var sql = $"UPDATE {table.Name} SET ";
-                foreach (var item in dictionary)
-                {
-                    sql += $"{item.Key} = @{item.Key},";
-                }
-
-                sql = sql.Substring(0, sql.Length - 1);
-                sql += $" WHERE {table.PrimaryKey} = @Identifier";
-
                 var command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@Identifier", id);
-                foreach (var item in dictionary)
-                {
-                    command.Parameters.AddWithValue($"@{item.Key}", item.Value);
-                }
-
                 connection.Open();
-                await command.ExecuteNonQueryAsync();
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var lookup = new LookupModel
+                        {
+                            Id = reader["Id"],
+                            Name = reader["Name"]?.ToString()
+                        };
+                        items.Add(lookup);
+                    }
+                }
             }
+
+            return items;
         }
 
         public async Task InsertItemAsync(ITable table, Dictionary<string, object> dictionary)
@@ -141,6 +149,65 @@
                 connection.Open();
                 await command.ExecuteNonQueryAsync();
             }
+        }
+
+        public async Task UpdateItemAsync(ITable table, string id, Dictionary<string, object> dictionary)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var sql = $"UPDATE {table.Name} SET ";
+                foreach (var item in dictionary)
+                {
+                    sql += $"{item.Key} = @{item.Key},";
+                }
+
+                sql = sql.Substring(0, sql.Length - 1);
+                sql += $" WHERE {table.PrimaryKey} = @Identifier";
+
+                var command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Identifier", id);
+                foreach (var item in dictionary)
+                {
+                    command.Parameters.AddWithValue($"@{item.Key}", item.Value);
+                }
+
+                connection.Open();
+                await command.ExecuteNonQueryAsync();
+            }
+        }
+
+        private static string GetIdColumnName(ITable table)
+        {
+            foreach (IColumn column in table.Columns)
+            {
+                if (column.IsPrimaryKey)
+                {
+                    return column.Name;
+                }
+            }
+
+            return null;
+        }
+
+        private string GetNameColumnName(ITable table)
+        {
+            foreach (var column in table.Columns)
+            {
+                if (!column.IsPrimaryKey && column.DataType == typeof(string))
+                {
+                    return column.Name;
+                }
+            }
+
+            foreach (var column in table.Columns)
+            {
+                if (!column.IsPrimaryKey)
+                {
+                    return column.Name;
+                }
+            }
+
+            return table.Columns.First().Name;
         }
     }
 }

@@ -56,6 +56,21 @@
                 schemaHandler.Context = Context;
                 await schemaHandler.Handle();
             }
+            else if (string.Equals(name, "lookup"))
+            {
+                var tables = _schemaRepository.GetTables();
+                var table = tables.GetTableByName(id);
+                if (table == null)
+                {
+                    await HttpNotFoundResponse();
+                }
+                else
+                {
+                    var lookupCallHandler = _serviceProvider.GetService<ILookupCallHandler>();
+                    lookupCallHandler.Context = Context;
+                    await lookupCallHandler.Handle(table);
+                }
+            }
             else
             {
                 var tables = _schemaRepository.GetTables();
