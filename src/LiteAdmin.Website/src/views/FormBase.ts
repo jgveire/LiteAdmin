@@ -60,7 +60,7 @@ export default class FormBase extends Vue
 
     public getMaxLength(maxLength: number): string
     {
-        if (maxLength === 0)
+        if (maxLength <= 0)
         {
             return '';
         }

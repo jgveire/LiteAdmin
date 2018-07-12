@@ -72,6 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include=".postcssrc.js" />
+    <Compile Include=".env" />
+    <Compile Include=".env.production" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />

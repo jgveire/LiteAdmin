@@ -54,7 +54,7 @@
 
             if (!string.IsNullOrEmpty(Options?.CustomJavaScriptUrl))
             {
-                content = content.Replace("</body>", $"<script type=\"text/javascript\" src=\"{Options.CustomJavaScriptUrl}\"></script></body>");
+                content = content.Replace("</head>", $"<script type=\"text/javascript\" src=\"{Options.CustomJavaScriptUrl}\"></script></head>");
             }
 
             return content;

@@ -41,7 +41,7 @@ export default class ApiService
         }
 
         const instance: AxiosInstance = Axios.create({
-            baseURL: 'http://localhost:9000/liteadmin/api/',
+            baseURL: store.getters.apiUrl,
             timeout: 20000,
             headers: requestHeaders,
             transformResponse: (data: any): any =>

@@ -36,6 +36,14 @@
                                            :value="lookup.id">{{lookup.name}}</md-option>
                             </md-select>
                         </md-field>
+                        <md-field v-else-if="column.dataType == 'String' && (column.maxLength > 200 || column.maxLength <= 0)">
+                            <label :for="column.name">{{getFriendlyName(column.name)}}</label>
+                            <md-textarea :id="column.name"
+                                      :name="column.name"
+                                      v-model="item[column.name]"
+                                      :maxlength="getMaxLength(column.maxLength)"
+                                      :required="!column.isNullable"></md-textarea>
+                        </md-field>
                         <md-field v-else>
                             <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                             <md-input :id="column.name"

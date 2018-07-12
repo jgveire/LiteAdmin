@@ -1,4 +1,7 @@
-﻿// Schema
+﻿// Store
+export const updateApiUrl: string = 'updateApiUrl';
+
+// Schema
 export const updateTables: string = 'updateTables';
 
 // Table data

@@ -2,13 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Copyright>Copyright (c) 2017 Veire Solutions</Copyright>
+    <Copyright>Copyright (c) 2018 Veire Solutions</Copyright>
     <Product>LiteAdmin</Product>
     <Company>Veire Solutions</Company>
     <Authors>Veire Solutions</Authors>
-    <Version>0.0.1</Version>
+    <Version>0.0.3</Version>
     <NeutralLanguage>English (United Kingdom)</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseUrl>https://github.com/jgveire/LiteAdmin/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/jgveire/LiteAdmin</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/jgveire/LiteAdmin/LiteAdmin.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/jgveire/LiteAdmin</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>LiteAdmin</PackageTags>
   </PropertyGroup>
 
 </Project>

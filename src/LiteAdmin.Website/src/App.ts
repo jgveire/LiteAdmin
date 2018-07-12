@@ -4,6 +4,7 @@ import { ITable } from '@/store/SchemaModule';
 import { IStore } from '@/store';
 import { IStoreState } from '@/store';
 import * as ActionTypes from '@/store/ActionTypes';
+import * as MutationTypes from '@/store/MutationTypes';
 
 @Component
 export default class App extends Vue
@@ -16,6 +17,7 @@ export default class App extends Vue
 
     public created(): void
     {
+        this.$store.commit(MutationTypes.updateApiUrl, process.env.VUE_APP_ROOT_API);
         this.$store.dispatch(ActionTypes.getSchema);
     }
 

@@ -16,6 +16,7 @@ import { ISnackbarGetters } from '@/store/SnackbarModule';
 import LookupModule from '@/store/LookupModule';
 import { ILookupState } from '@/store/LookupModule';
 import { ILookupGetters } from '@/store/LookupModule';
+import * as MutationTypes from '@/store/MutationTypes';
 
 Vue.use(Vuex);
 
@@ -26,6 +27,7 @@ export interface IStore<T> extends Store<T>
 
 export interface IStoreState
 {
+    apiUrl: string;
     schema: ISchemaState;
     tableData: ITableDataState;
     snackbar: ISnackbarState;
@@ -35,19 +37,31 @@ export interface IStoreState
 // tslint:disable no-empty-interface
 export interface IStoreGetters extends ISchemaGetters, ITableDataGetters, ISnackbarGetters, ILookupGetters
 {
+    apiUrl: string;
 }
 
 const actions: ActionTree<IStoreState, IStoreState> = {
 };
 
 const getters: GetterTree<IStoreState, IStoreState> = {
+
+    apiUrl(state: IStoreState): string
+    {
+        return state.apiUrl;
+    },
 };
 
 const mutations: MutationTree<IStoreState> = {
+
+    [MutationTypes.updateApiUrl](state: IStoreState, apiUrl: string): void
+    {
+        state.apiUrl = apiUrl;
+    },
 };
 
 const store: IStore<IStoreState> = new Vuex.Store<IStoreState>({
     state: {
+        apiUrl: '',
         schema: {
             tables: new Array(),
         },
