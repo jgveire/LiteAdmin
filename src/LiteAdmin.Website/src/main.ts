@@ -3,6 +3,7 @@ import App from './App';
 import router from './router';
 import store from './store';
 import Navigation from '@/components/Navigation';
+import { formatDate } from '@/filters';
 import {
     MdApp,
     MdTable,
@@ -30,6 +31,9 @@ import 'vue-material/dist/vue-material.min.css';
 Vue.config.productionTip = false;
 
 Vue.component('Navigation', Navigation);
+
+Vue.filter('formatDate', formatDate);
+
 Vue.use(MdApp);
 Vue.use(MdTable);
 Vue.use(MdButton);

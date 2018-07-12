@@ -37,11 +37,10 @@ export default class Edit extends FormBase
 
     public save(): void
     {
-        const obj: any = this.createItem();
         const payload: IUpdateTableItem = {
             tableName: this.tableName,
             itemId: this.itemId,
-            item: obj,
+            item: this.item,
         };
         this.$store.dispatch(ActionTypes.updateTableItem, payload)
             .then(() => this.close());

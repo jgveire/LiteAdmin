@@ -73,48 +73,6 @@ export default class FormBase extends Vue
         return stringHelper.split(columnName);
     }
 
-    public createItem(): any
-    {
-        const obj: any = new Object();
-        for (const column of this.tableSchema.columns)
-        {
-            if (column.dataType === 'Int16' ||
-                column.dataType === 'Int32' ||
-                column.dataType === 'Int64')
-            {
-                const n: number = Number.parseInt(this.$refs[column.name][0].value);
-                if (!Number.isNaN(n))
-                {
-                    obj[column.name] = n;
-                }
-            }
-            else if (column.dataType === 'Decimal' ||
-                column.dataType === 'Float' ||
-                column.dataType === 'Double')
-            {
-                const i: number = Number.parseFloat(this.$refs[column.name][0].value);
-                if (!Number.isNaN(i))
-                {
-                    obj[column.name] = i;
-                }
-            }
-            else if (column.dataType === 'DateTime')
-            {
-                const date: number = Date.parse(this.$refs[column.name][0].value);
-                if (Number.isNaN(date))
-                {
-                    obj[column.name] = date;
-                }
-            }
-            else
-            {
-                obj[column.name] = this.$refs[column.name][0].value;
-            }
-        }
-
-        return obj;
-    }
-
     public createNewItem(): any
     {
         const obj: any = new Object();

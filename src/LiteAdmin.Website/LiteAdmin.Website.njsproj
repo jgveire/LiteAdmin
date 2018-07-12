@@ -70,6 +70,7 @@
     <Content Include="src\views\Home.ts" />
     <Content Include="src\views\Home.vue" />
     <Content Include="tsconfig.json" />
+    <Content Include="vue.config.js" />
     <Content Include="tslint.json" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +82,7 @@
     <Folder Include="src\assets\" />
     <Folder Include="src\components\" />
     <Folder Include="src\helpers\" />
+    <Folder Include="src\filters\" />
     <Folder Include="src\typings\vue-material\" />
     <Folder Include="src\typings\" />
     <Folder Include="src\services\" />
@@ -88,6 +90,8 @@
     <Folder Include="src\views\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\filters\index.ts" />
+    <TypeScriptCompile Include="src\filters\formatDate.ts" />
     <TypeScriptCompile Include="src\helpers\GuidHelper.ts" />
     <TypeScriptCompile Include="src\helpers\StringHelper.ts" />
     <TypeScriptCompile Include="src\main.ts" />
