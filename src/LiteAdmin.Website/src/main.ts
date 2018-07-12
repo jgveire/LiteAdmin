@@ -2,7 +2,6 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
-import Navigation from '@/components/Navigation';
 import { formatDate } from '@/filters';
 import {
     MdApp,
@@ -29,8 +28,6 @@ import {
 import 'vue-material/dist/vue-material.min.css';
 
 Vue.config.productionTip = false;
-
-Vue.component('Navigation', Navigation);
 
 Vue.filter('formatDate', formatDate);
 

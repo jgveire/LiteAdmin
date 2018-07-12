@@ -22,7 +22,8 @@
             services.AddCors();
             LiteAdminOptions options = new LiteAdminOptions
             {
-                Tables = new string[] { "Cars", "Garages", "Test", "Category" }
+                Tables = new string[] { "Cars", "Garages", "Test", "Category" },
+                CustomJavaScriptUrl = "/js/custom.js"
             };
             services.AddLiteAdmin(@"Server=.\SQLExpress;Database=Example;Trusted_Connection=True", options);
         }
@@ -42,6 +43,7 @@
                     .AllowAnyOrigin();
             });
 
+            app.UseStaticFiles();
             app.UseLiteAdmin();
         }
     }

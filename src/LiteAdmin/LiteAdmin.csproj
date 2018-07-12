@@ -11,13 +11,65 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="StaticFiles\android-chrome-192x192.png" />
+    <None Remove="StaticFiles\android-chrome-512x512.png" />
+    <None Remove="StaticFiles\apple-touch-icon.png" />
+    <None Remove="StaticFiles\browserconfig.xml" />
+    <None Remove="StaticFiles\css\app.77866455.css" />
+    <None Remove="StaticFiles\css\app.94045d8f.css" />
+    <None Remove="StaticFiles\css\chunk-vendors.c24fed64.css" />
+    <None Remove="StaticFiles\favicon-16x16.png" />
+    <None Remove="StaticFiles\favicon-32x32.png" />
+    <None Remove="StaticFiles\favicon.ico" />
+    <None Remove="StaticFiles\img\logo.9c812e3e.svg" />
     <None Remove="StaticFiles\index.html" />
+    <None Remove="StaticFiles\js\app.03bb0e3e.js" />
+    <None Remove="StaticFiles\js\app.03bb0e3e.js.map" />
+    <None Remove="StaticFiles\js\app.27f9f21e.js" />
+    <None Remove="StaticFiles\js\app.27f9f21e.js.map" />
+    <None Remove="StaticFiles\js\app.67bbe99b.js" />
+    <None Remove="StaticFiles\js\app.67bbe99b.js.map" />
+    <None Remove="StaticFiles\js\app.82ba5f8f.js" />
+    <None Remove="StaticFiles\js\app.82ba5f8f.js.map" />
+    <None Remove="StaticFiles\js\app.d869d566.js" />
+    <None Remove="StaticFiles\js\app.d869d566.js.map" />
+    <None Remove="StaticFiles\js\chunk-vendors.06f91d7b.js" />
+    <None Remove="StaticFiles\js\chunk-vendors.06f91d7b.js.map" />
+    <None Remove="StaticFiles\js\chunk-vendors.42200a18.js" />
+    <None Remove="StaticFiles\js\chunk-vendors.42200a18.js.map" />
+    <None Remove="StaticFiles\mstile-144x144.png" />
+    <None Remove="StaticFiles\mstile-150x150.png" />
+    <None Remove="StaticFiles\mstile-310x150.png" />
+    <None Remove="StaticFiles\mstile-310x310.png" />
+    <None Remove="StaticFiles\mstile-70x70.png" />
     <None Remove="StaticFiles\page-not-found.html" />
+    <None Remove="StaticFiles\safari-pinned-tab.svg" />
+    <None Remove="StaticFiles\site.webmanifest" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="StaticFiles\page-not-found.html" />
+    <EmbeddedResource Include="StaticFiles\android-chrome-192x192.png" />
+    <EmbeddedResource Include="StaticFiles\android-chrome-512x512.png" />
+    <EmbeddedResource Include="StaticFiles\apple-touch-icon.png" />
+    <EmbeddedResource Include="StaticFiles\browserconfig.xml" />
+    <EmbeddedResource Include="StaticFiles\css\app.94045d8f.css" />
+    <EmbeddedResource Include="StaticFiles\css\chunk-vendors.c24fed64.css" />
+    <EmbeddedResource Include="StaticFiles\favicon-16x16.png" />
+    <EmbeddedResource Include="StaticFiles\favicon-32x32.png" />
+    <EmbeddedResource Include="StaticFiles\favicon.ico" />
+    <EmbeddedResource Include="StaticFiles\img\logo.9c812e3e.svg" />
+    <EmbeddedResource Include="StaticFiles\js\app.67bbe99b.js" />
+    <EmbeddedResource Include="StaticFiles\js\app.67bbe99b.js.map" />
+    <EmbeddedResource Include="StaticFiles\js\chunk-vendors.06f91d7b.js" />
+    <EmbeddedResource Include="StaticFiles\js\chunk-vendors.06f91d7b.js.map" />
+    <EmbeddedResource Include="StaticFiles\mstile-144x144.png" />
+    <EmbeddedResource Include="StaticFiles\mstile-150x150.png" />
+    <EmbeddedResource Include="StaticFiles\mstile-310x150.png" />
+    <EmbeddedResource Include="StaticFiles\mstile-310x310.png" />
+    <EmbeddedResource Include="StaticFiles\mstile-70x70.png" />
     <EmbeddedResource Include="StaticFiles\index.html" />
+    <EmbeddedResource Include="StaticFiles\safari-pinned-tab.svg" />
+    <EmbeddedResource Include="StaticFiles\site.webmanifest" />
   </ItemGroup>
 
   <ItemGroup>

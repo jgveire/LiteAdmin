@@ -33,7 +33,7 @@
                 {
                     string contentType = GetContentType(resourceName);
                     string content = reader.ReadToEnd();
-                    if (string.Equals(remainingPath, "LiteAdmin.StaticFiles.index.html", StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(resourceName, "LiteAdmin.StaticFiles.index.html", StringComparison.OrdinalIgnoreCase))
                     {
                         content = InjectCustomFiles(content);
                     }

@@ -58,9 +58,6 @@
     <Content Include="src\App.vue" />
     <Content Include="src\assets\grid.jpg" />
     <Content Include="src\assets\logo.svg" />
-    <Content Include="src\components\Navigation.scss" />
-    <Content Include="src\components\Navigation.ts" />
-    <Content Include="src\components\Navigation.vue" />
     <Content Include="src\views\Add.vue" />
     <Content Include="src\views\Edit.scss" />
     <Content Include="src\views\Overview.scss" />
@@ -80,7 +77,6 @@
     <Folder Include="public\" />
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
-    <Folder Include="src\components\" />
     <Folder Include="src\helpers\" />
     <Folder Include="src\filters\" />
     <Folder Include="src\typings\vue-material\" />
