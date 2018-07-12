@@ -24,7 +24,7 @@
             }
             else if (HttpMethods.IsGet(Request.Method))
             {
-                var records = await _databaseRepository.GetItemsAsync(table);
+                var records = await _databaseRepository.GetItemsAsync(table, 1, int.MaxValue);
                 await JsonResponse(records);
             }
             else if (HttpMethods.IsPut(Request.Method) && !string.IsNullOrEmpty(id))
