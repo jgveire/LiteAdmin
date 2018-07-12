@@ -143,15 +143,7 @@ const mutations: MutationTree<ITableDataState> = {
 
     [MutationTypes.deleteItem](state: ITableDataState, payload: ITableItem): void
     {
-        if (state.tableName === payload.tableName)
-        {
-            const item = state.items.filter(item => item['id'] == payload.itemId);
-            if (item !== null)
-            {
-                
-            }
-
-        }
+        // todo
     },
 };
 

@@ -8,7 +8,7 @@
             <md-card-content>
                 <div v-for="(column, index) in tableSchema.columns"
                      :key="column.name">
-                    <md-checkbox v-if="column.dataType == 'Boolean'"
+                    <md-checkbox v-if="column.dataType == 'Byte' || column.dataType == 'Boolean'"
                                  :id="column.name"
                                  :name="column.name"
                                  :ref="column.name"
@@ -23,10 +23,24 @@
                                    :disabled="column.isPrimaryKey"
                                    :md-open-on-focus="false"
                                    :required="!column.isNullable">
-                        <label :for="column.name" 
+                        <label :for="column.name"
                                :class="column.isNullable ? '' : 'md-required'">
-                            {{getFriendlyName(column.name)}}</label>
+                            {{getFriendlyName(column.name)}}
+                        </label>
                     </md-datepicker>
+                    <md-field v-else-if="column.foreignKey">
+                        <label :for="column.name">{{getFriendlyName(column.name)}}</label>
+                        <md-select id="column.name"
+                                   :name="column.name"
+                                   :ref="column.name"
+                                   v-model="item[column.name]"
+                                   :required="!column.isNullable">
+                            <md-option value="">- empty -</md-option>
+                            <md-option v-for="lookup in lookups[column.foreignTable]"
+                                       :key="lookup.id"
+                                       :value="lookup.id">{{lookup.name}}</md-option>
+                        </md-select>
+                    </md-field>
                     <md-field v-else>
                         <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                         <md-input :id="column.name"

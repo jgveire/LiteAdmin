@@ -13,6 +13,9 @@ import { ITableDataGetters } from '@/store/TableDataModule';
 import SnackbarModule from '@/store/SnackbarModule';
 import { ISnackbarState } from '@/store/SnackbarModule';
 import { ISnackbarGetters } from '@/store/SnackbarModule';
+import LookupModule from '@/store/LookupModule';
+import { ILookupState } from '@/store/LookupModule';
+import { ILookupGetters } from '@/store/LookupModule';
 
 Vue.use(Vuex);
 
@@ -26,10 +29,11 @@ export interface IStoreState
     schema: ISchemaState;
     tableData: ITableDataState;
     snackbar: ISnackbarState;
+    lookup: ILookupState;
 }
 
 // tslint:disable no-empty-interface
-export interface IStoreGetters extends ISchemaGetters, ITableDataGetters, ISnackbarGetters
+export interface IStoreGetters extends ISchemaGetters, ITableDataGetters, ISnackbarGetters, ILookupGetters
 {
 }
 
@@ -56,7 +60,10 @@ const store: IStore<IStoreState> = new Vuex.Store<IStoreState>({
             showSnackbar: false,
             snackbarMessage: '',
             timeoutId: 0,
-        }
+        },
+        lookup: {
+            lookups: new Object(),
+        },
     },
     actions,
     mutations,
@@ -64,7 +71,8 @@ const store: IStore<IStoreState> = new Vuex.Store<IStoreState>({
     modules: {
         SchemaModule,
         TableDataModule,
-        SnackbarModule
+        SnackbarModule,
+        LookupModule,
     },
 });
 

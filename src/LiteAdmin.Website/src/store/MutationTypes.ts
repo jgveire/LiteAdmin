@@ -10,3 +10,7 @@ export const deleteItem: string = 'deleteItem';
 // Snack bar
 export const updateSnackbarMessage: string = 'updateSnackbarMessage';
 export const showSnackbar: string = 'showSnackbar';
+
+// Lookup
+export const updateLookup: string = 'updateLookup';
+export const initLookup: string = 'initLookup';

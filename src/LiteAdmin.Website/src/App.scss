@@ -5,6 +5,17 @@
 .md-app {
     min-height: 100vh;
 
+    .md-card {
+        border-top: 5px solid md-get-palette-color(blue, 900);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        width: 320px;
+        margin: 4px;
+        min-height: 150px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
     .md-drawer {
         width: 250px;
     }

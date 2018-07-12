@@ -17,7 +17,9 @@ export interface ITable
 export interface IColumn
 {
     dataType: string;
-    defaultValue: string ;
+    defaultValue: string | null;
+    foreignKey: string | null;
+    foreignTable: string | null;
     isNullable: boolean;
     isPrimaryKey: boolean;
     maxLength: number;

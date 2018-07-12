@@ -28,6 +28,11 @@ export default class Overview extends Vue
         this.$store.dispatch(ActionTypes.getTableItems, this.tableName);
     }
 
+    public mounted(): void
+    {
+        this.$store.dispatch(ActionTypes.getLookups, this.tableSchema);
+    }
+
     public get tableName(): string
     {
         return this.$route.params[ParamNames.tableName];

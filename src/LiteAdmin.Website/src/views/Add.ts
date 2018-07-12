@@ -12,6 +12,8 @@ import { IAddTableItem } from '@/store/TableDataModule';
 import { stringHelper } from '@/helpers/StringHelper';
 import { guidHelper } from '@/helpers/GuidHelper';
 import FormBase from '@/views/FormBase';
+import { LookupService } from '@/services/LookupService';
+import { ILookup } from '@/services/LookupService';
 
 @Component
 export default class Edit extends FormBase
@@ -22,6 +24,7 @@ export default class Edit extends FormBase
 
     public mounted(): void
     {
+        this.$store.dispatch(ActionTypes.getLookups, this.tableSchema);
         this.item = this.createNewItem();
     }
 
@@ -50,7 +53,8 @@ export default class Edit extends FormBase
         this.item[columnName] = guidHelper.generate();
     }
 
-    public getForeignItems(tableName: string): void
+    public get lookups(): any
     {
+        return this.$store.getters.lookups;
     }
 }

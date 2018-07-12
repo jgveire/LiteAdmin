@@ -27,7 +27,7 @@ export default class ApiService
             timeout: 20000,
             transformResponse: (data: any): any =>
             {
-                if (data && typeof (data) === 'string')
+                if (data && typeof(data) === 'string')
                 {
                     return JSON.parse(data, reviver);
                 }

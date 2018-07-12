@@ -136,7 +136,7 @@ export default class FormBase extends Vue
             {
                 obj[column.name] = null;
             }
-            else if (column.dataType === 'Boolean')
+            else if (column.dataType === 'Byte' || column.dataType === 'Boolean')
             {
                 obj[column.name] = false;
             }

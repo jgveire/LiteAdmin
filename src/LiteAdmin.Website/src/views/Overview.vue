@@ -20,7 +20,7 @@
                                v-if="index < 6 && !column.isPrimaryKey">
                     {{item[column.name]}}
                 </md-table-cell>
-                <md-table-cell>
+                <md-table-cell class="buttons">
                     <md-button class="md-icon-button md-primary" v-on:click.stop="removeItem(item[tableKey])">
                         <md-icon class="">delete</md-icon>
                     </md-button>

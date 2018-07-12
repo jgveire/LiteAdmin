@@ -9,7 +9,7 @@
                 <md-card-content>
                     <div v-for="(column, index) in tableSchema.columns"
                          :key="column.name">
-                        <md-checkbox v-if="column.dataType == 'Boolean'"
+                        <md-checkbox v-if="column.dataType == 'Byte' || column.dataType == 'Boolean'"
                                      :id="column.name"
                                      :name="column.name"
                                      v-model="item[column.name]"
@@ -24,19 +24,18 @@
                                        :class="column.isNullable ? '' : 'md-required'">
                             <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                         </md-datepicker>
-                        <!--<md-autocomplete v-else-if="column.foreignKey"
-                                         v-model="item[column.name]"
-                                         :md-options="countries"
-                                         @md-changed="getForeignItems(column.foreignTable)"
-                                         @md-opened="getForeignItems(column.foreignTable)">
+                        <md-field v-else-if="column.foreignKey">
                             <label :for="column.name">{{getFriendlyName(column.name)}}</label>
-                            <template slot="md-autocomplete-empty" slot-scope="{ item }">
-                                ...
-                            </template>
-                            <template slot="md-autocomplete-item" slot-scope="{ item }">
-                                {{ item.name }}
-                            </template>
-                        </md-autocomplete>-->
+                            <md-select id="column.name"
+                                       :name="column.name"
+                                       v-model="item[column.name]"
+                                       :required="!column.isNullable">
+                                <md-option value="">- empty -</md-option>
+                                <md-option v-for="lookup in lookups[column.foreignTable]"
+                                           :key="lookup.id"
+                                           :value="lookup.id">{{lookup.name}}</md-option>
+                            </md-select>
+                        </md-field>
                         <md-field v-else>
                             <label :for="column.name">{{getFriendlyName(column.name)}}</label>
                             <md-input :id="column.name"

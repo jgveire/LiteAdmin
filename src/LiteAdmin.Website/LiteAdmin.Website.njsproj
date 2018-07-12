@@ -95,6 +95,7 @@
     <TypeScriptCompile Include="src\router.ts" />
     <TypeScriptCompile Include="src\services\ApiService.ts" />
     <TypeScriptCompile Include="src\services\index.ts" />
+    <TypeScriptCompile Include="src\services\LookupService.ts" />
     <TypeScriptCompile Include="src\services\TableDataService.ts" />
     <TypeScriptCompile Include="src\services\SchemaService.ts" />
     <TypeScriptCompile Include="src\shims-tsx.d.ts" />
@@ -102,6 +103,7 @@
     <TypeScriptCompile Include="src\store\ActionTypes.ts" />
     <TypeScriptCompile Include="src\store\index.ts" />
     <TypeScriptCompile Include="src\store\MutationTypes.ts" />
+    <TypeScriptCompile Include="src\store\LookupModule.ts" />
     <TypeScriptCompile Include="src\store\SnackbarModule.ts" />
     <TypeScriptCompile Include="src\store\TableDataModule.ts" />
     <TypeScriptCompile Include="src\store\SchemaModule.ts" />

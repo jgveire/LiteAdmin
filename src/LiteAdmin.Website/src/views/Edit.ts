@@ -22,6 +22,7 @@ export default class Edit extends FormBase
             itemId: this.itemId,
         };
         this.$store.dispatch(ActionTypes.getTableItem, payload);
+        this.$store.dispatch(ActionTypes.getLookups, this.tableSchema);
     }
 
     public get itemId(): string
@@ -49,5 +50,10 @@ export default class Edit extends FormBase
     public cancel(): void
     {
         this.close();
+    }
+
+    public get lookups(): any
+    {
+        return this.$store.getters.lookups;
     }
 }
