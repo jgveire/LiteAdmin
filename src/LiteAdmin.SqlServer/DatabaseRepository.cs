@@ -101,7 +101,7 @@
                 throw new InvalidOperationException($"The table {table.Name} does not have a primary key.");
             }
 
-            string sql = $"SELECT {idColumn} AS Id, {nameColumn} AS Name FROM {table.Name}";
+            string sql = $"SELECT {idColumn} AS Id, {nameColumn} AS Name FROM {table.Name} ORDER BY 2";
             using (var connection = new SqlConnection(ConnectionString))
             {
                 var command = new SqlCommand(sql, connection);
@@ -143,12 +143,24 @@
                 var command = new SqlCommand(sql, connection);
                 foreach (var item in dictionary)
                 {
-                    command.Parameters.AddWithValue($"@{item.Key}", item.Value);
+                    var value = GetDatabaseValue(item);
+                    command.Parameters.AddWithValue($"@{item.Key}", value);
                 }
 
                 connection.Open();
                 await command.ExecuteNonQueryAsync();
             }
+        }
+
+        private static object GetDatabaseValue(KeyValuePair<string, object> item)
+        {
+            object value = item.Value;
+            if (value == null || value.ToString() == "")
+            {
+                value = DBNull.Value;
+            }
+
+            return value;
         }
 
         public async Task UpdateItemAsync(ITable table, string id, Dictionary<string, object> dictionary)
@@ -168,7 +180,8 @@
                 command.Parameters.AddWithValue("@Identifier", id);
                 foreach (var item in dictionary)
                 {
-                    command.Parameters.AddWithValue($"@{item.Key}", item.Value);
+                    var value = GetDatabaseValue(item);
+                    command.Parameters.AddWithValue($"@{item.Key}", value);
                 }
 
                 connection.Open();
