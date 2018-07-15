@@ -3,17 +3,16 @@ import { Component} from 'vue-property-decorator';
 import { ITable } from '@/store/SchemaModule';
 import { IStore } from '@/store';
 import { IStoreState } from '@/store';
+import FormBase from '@/views/FormBase';
 import * as ActionTypes from '@/store/ActionTypes';
 import * as MutationTypes from '@/store/MutationTypes';
 
 @Component
-export default class App extends Vue
+export default class App extends FormBase
 {
-    public $store!: IStore<IStoreState>;
-
     public showSnackbar: boolean = false;
 
-    public showMenu: boolean = false;
+    public showMenu: boolean = true;
 
     public created(): void
     {

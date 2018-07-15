@@ -9,9 +9,9 @@
     <Version>0.0.3</Version>
     <NeutralLanguage>English (United Kingdom)</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseUrl>https://github.com/jgveire/LiteAdmin/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/jgveire/LiteAdmin/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jgveire/LiteAdmin</PackageProjectUrl>
-    <PackageIconUrl>https://github.com/jgveire/LiteAdmin/LiteAdmin.png</PackageIconUrl>
+    <PackageIconUrl>https://jgveire.github.io/LiteAdmin/LiteAdmin.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/jgveire/LiteAdmin</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>LiteAdmin</PackageTags>

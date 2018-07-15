@@ -2,13 +2,12 @@ import { Vue } from 'vue-property-decorator';
 import { Component } from 'vue-property-decorator';
 import { IStore } from '@/store';
 import { IStoreState } from '@/store';
+import FormBase from '@/views/FormBase';
 import { ITable } from '@/store/SchemaModule';
 
 @Component
-export default class Home extends Vue
+export default class Home extends FormBase
 {
-    public $store!: IStore<IStoreState>;
-
     public get tables(): ITable[]
     {
         return this.$store.getters.tables;

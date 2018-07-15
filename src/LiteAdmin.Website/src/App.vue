@@ -5,15 +5,15 @@
                 <md-app-toolbar class="md-primary">
                     <div class="md-toolbar-row">
                         <div class="md-toolbar-section-start">
+                            <md-button v-if="!showMenu"
+                                       class="md-icon-button" 
+                                       @click="toggleMenu">
+                                <md-icon>menu</md-icon>
+                            </md-button>
                             <router-link to="/" class="md-title">
                                 <img src="./assets/logo.svg" alt="LiteAdmin" class="logo" />
                                 LiteAdmin
                             </router-link>
-                        </div>
-                        <div class="md-toolbar-section-end">
-                            <md-button class="md-icon-button" @click="toggleMenu">
-                                <md-icon>menu</md-icon>
-                            </md-button>
                         </div>
                     </div>
                 </md-app-toolbar>
@@ -36,7 +36,7 @@
 
                         <md-list-item v-for="table in tables"
                                       :key="table.name">
-                            <router-link :to="'/maintain/' + table.name" class="md-list-item-text">{{table.name}}</router-link>
+                            <router-link :to="'/maintain/' + table.name" class="md-list-item-text">{{getFriendlyName(table.name)}}</router-link>
                         </md-list-item>
                     </md-list>
 

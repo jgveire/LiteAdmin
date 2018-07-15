@@ -74,9 +74,11 @@
     <Compile Include=".postcssrc.js" />
     <Compile Include=".env" />
     <Compile Include=".env.production" />
+    <Compile Include="public\js\es6-promise.auto.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
+    <Folder Include="public\js\" />
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\helpers\" />

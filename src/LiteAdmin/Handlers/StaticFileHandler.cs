@@ -29,17 +29,27 @@
                     await PageNotFoundAsync(context);
                 }
 
-                using (StreamReader reader = new StreamReader(stream))
+                byte[] bytes;
+                string contentType = GetContentType(resourceName);
+                if (string.Equals(resourceName, "LiteAdmin.StaticFiles.index.html", StringComparison.OrdinalIgnoreCase))
                 {
-                    string contentType = GetContentType(resourceName);
-                    string content = reader.ReadToEnd();
-                    if (string.Equals(resourceName, "LiteAdmin.StaticFiles.index.html", StringComparison.OrdinalIgnoreCase))
-                    {
-                        content = InjectCustomFiles(content);
-                    }
 
-                    var bytes = Encoding.UTF8.GetBytes(content);
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        string content = reader.ReadToEnd();
+                        content = InjectCustomFiles(content);
+                        bytes = Encoding.UTF8.GetBytes(content);
+                        context.Response.ContentType = contentType;
+                        await context.Response.Body.WriteAsync(bytes, 0, bytes.Length);
+                    }
+                }
+                else
+                {
+
                     context.Response.ContentType = contentType;
+
+                    bytes = new byte[stream.Length];
+                    await stream.ReadAsync(bytes, 0, Convert.ToInt32(stream.Length));
                     await context.Response.Body.WriteAsync(bytes, 0, bytes.Length);
                 }
             }
@@ -80,6 +90,11 @@
         {
             if (remainingPath.HasValue)
             {
+                if (remainingPath.Value.Equals("/"))
+                {
+                    return "LiteAdmin.StaticFiles.index.html";
+                }
+
                 var resourcePath = "LiteAdmin.StaticFiles";
                 var filePath = remainingPath.Value.Replace('/', '.').ToLower(CultureInfo.InvariantCulture);
                 return $"{resourcePath}{filePath}";

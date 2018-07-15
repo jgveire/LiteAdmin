@@ -6,8 +6,8 @@
                  @click.native="cardClick" 
                  :data-table-name="table.name">
                 <md-card-header>
-                    <div class="md-title">{{table.name}}</div>
-                    <div class="md-subhead">Click here to view the table content of {{table.name}}.</div>
+                    <div class="md-title">{{getFriendlyName(table.name)}}</div>
+                    <div class="md-subhead">Click here to view the table content of {{getFriendlyName(table.name)}}.</div>
                 </md-card-header>
         </md-card>
     </div>

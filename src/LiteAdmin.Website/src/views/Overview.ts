@@ -5,20 +5,15 @@ import VueRouter from 'vue-router';
 import { Route } from 'vue-router';
 import * as ActionTypes from '@/store/ActionTypes';
 import * as ParamNames from '@/ParamNames';
+import FormBase from '@/views/FormBase';
 import { ITable } from '@/store/SchemaModule';
 import { IColumn } from '@/store/SchemaModule';
 import { stringHelper } from '@/helpers/StringHelper';
 import { ITableItem } from '@/store/TableDataModule';
 
 @Component
-export default class Overview extends Vue
+export default class Overview extends FormBase
 {
-    public $store!: IStore<IStoreState>;
-
-    public $router!: VueRouter;
-
-    public $route!: Route;
-
     public showDialog: boolean = false;
 
     public selectedItemId: string = '';
