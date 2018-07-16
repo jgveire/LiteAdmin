@@ -6,7 +6,20 @@ import { Store } from 'vuex';
 import * as ActionTypes from '@/store/ActionTypes';
 import store from '@/store';
 
-declare let window: any;
+interface ILiteAdminOptions
+{
+    /* tslint:disable */
+    headers: Function;
+    /* tslint:enable */
+    loginUrl: string;
+}
+
+interface ILiteAdminWindow extends Window
+{
+    liteAdminOptions: ILiteAdminOptions;
+}
+
+declare let window: ILiteAdminWindow;
 
 const dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z?$/;
 
@@ -62,7 +75,18 @@ export default class ApiService
             },
             (error: AxiosError): Promise<AxiosError> =>
             {
-                store.dispatch(ActionTypes.showSnackbar, error.message);
+                if (error.response &&
+                    error.response.status === 401 &&
+                    window.liteAdminOptions &&
+                    window.liteAdminOptions.loginUrl &&
+                    window.liteAdminOptions.loginUrl !== window.location.pathname)
+                {
+                    window.location.href = window.liteAdminOptions.loginUrl;
+                }
+                else
+                {
+                    store.dispatch(ActionTypes.showSnackbar, error.message);
+                }
                 return Promise.reject(error);
             });
 

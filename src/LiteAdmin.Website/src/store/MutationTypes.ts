@@ -8,7 +8,8 @@ export const updateTables: string = 'updateTables';
 export const updateTableItems: string = 'updateTableItems';
 export const updateTableItem: string = 'updateTableItem';
 export const updateTableName: string = 'updateTableName';
-export const deleteItem: string = 'deleteItem';
+export const deleteTableItem: string = 'deleteTableItem';
+export const addTableItem: string = 'addTableItem';
 
 // Snack bar
 export const updateSnackbarMessage: string = 'updateSnackbarMessage';

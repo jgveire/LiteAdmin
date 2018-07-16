@@ -10,6 +10,8 @@ import { ITable } from '@/store/SchemaModule';
 import { IColumn } from '@/store/SchemaModule';
 import { stringHelper } from '@/helpers/StringHelper';
 import { ITableItem } from '@/store/TableDataModule';
+import { ILookup } from '@/services';
+import moment from 'moment';
 
 @Component
 export default class Overview extends FormBase
@@ -17,6 +19,8 @@ export default class Overview extends FormBase
     public showDialog: boolean = false;
 
     public selectedItemId: string = '';
+
+    public selectedItem: any;
 
     public created(): void
     {
@@ -84,9 +88,10 @@ export default class Overview extends FormBase
         return stringHelper.split(name);
     }
 
-    public removeItem(id: string): void
+    public removeItem(id: string, item: any): void
     {
         this.selectedItemId = id;
+        this.selectedItem = item;
         this.showDialog = true;
     }
 
@@ -94,13 +99,49 @@ export default class Overview extends FormBase
     {
         const payload: ITableItem = {
             itemId: this.selectedItemId,
+            item: this.selectedItem,
             tableName: this.tableName,
         };
-        this.$store.dispatch(ActionTypes.deleteTableItem, payload   );
+        this.$store.dispatch(ActionTypes.deleteTableItem, payload);
     }
 
     public cancel(): void
     {
         this.showDialog = false;
+    }
+
+    public getDisplayValue(item: any, column: IColumn): any
+    {
+        if (column.foreignTable)
+        {
+            const lookup: ILookup[] = this.$store.getters.lookups[column.foreignTable];
+            if (lookup)
+            {
+                const entries: ILookup[] = lookup.filter((e) => e.id === item[column.name]);
+                if (entries.length === 1)
+                {
+                    return entries[0].name;
+                }
+            }
+        }
+        else if (column.dataType === 'DateTime' &&
+            item[column.name])
+        {
+            var date: Date = item[column.name];
+
+            if (date.getHours() === 0 &&
+                date.getMinutes() === 0 &&
+                date.getSeconds() === 0 &&
+                date.getMilliseconds() === 0)
+            {
+                return moment(date).format('DD-MM-YYYY');
+            }
+            else
+            {
+                return moment(date).format('DD-MM-YYYY HH:mm:ss');
+            }
+        }
+
+        return item[column.name];
     }
 }

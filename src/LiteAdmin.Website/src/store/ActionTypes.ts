@@ -14,3 +14,4 @@ export const hideSnackbar: string = 'hideSnackbar';
 
 // Lookup
 export const getLookups: string = 'getLookups';
+export const refreshLookup: string = 'refreshLookup';

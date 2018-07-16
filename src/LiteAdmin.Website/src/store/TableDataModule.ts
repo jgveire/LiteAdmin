@@ -22,10 +22,17 @@ export interface ITableDataGetters
     items: any[];
 }
 
+export interface IGetTableItem
+{
+    itemId: string;
+    tableName: string;
+}
+
 export interface ITableItem
 {
-    tableName: string;
     itemId: string;
+    item: any;
+    tableName: string;
 }
 
 export interface IUpdateTableItem extends  ITableItem
@@ -60,7 +67,7 @@ const actions: ActionTree<ITableDataState, IStoreState> = {
         });
     },
 
-    [ActionTypes.getTableItem](context: ActionContext<ITableDataState, IStoreState>, payload: ITableItem): Promise<void>
+    [ActionTypes.getTableItem](context: ActionContext<ITableDataState, IStoreState>, payload: IGetTableItem): Promise<void>
     {
         context.commit(MutationTypes.updateTableName, payload.tableName);
         context.commit(MutationTypes.updateTableItem, new Object());
@@ -89,6 +96,7 @@ const actions: ActionTree<ITableDataState, IStoreState> = {
 
     [ActionTypes.addTableItem](context: ActionContext<ITableDataState, IStoreState>, payload: IAddTableItem): Promise<void>
     {
+        context.commit(MutationTypes.addTableItem, payload.item);
         return new Promise<void>((resolve, reject) =>
         {
             TableDataService.addItem(payload.tableName, payload.item)
@@ -99,14 +107,11 @@ const actions: ActionTree<ITableDataState, IStoreState> = {
 
     [ActionTypes.deleteTableItem](context: ActionContext<ITableDataState, IStoreState>, payload: ITableItem): Promise<void>
     {
+        context.commit(MutationTypes.deleteTableItem, payload.item);
         return new Promise<void>((resolve, reject) =>
         {
             TableDataService.deleteItem(payload.tableName, payload.itemId)
-                .then(() =>
-                {
-                    context.commit(MutationTypes.deleteItem, payload);
-                    resolve();
-                })
+                .then(resolve)
                 .catch(reject);
         });
     },
@@ -141,9 +146,21 @@ const mutations: MutationTree<ITableDataState> = {
         state.tableName = tableName;
     },
 
-    [MutationTypes.deleteItem](state: ITableDataState, payload: ITableItem): void
+    [MutationTypes.addTableItem](state: ITableDataState, item: any): void
     {
-        // todo
+        state.items.push(item);
+    },
+
+    [MutationTypes.deleteTableItem](state: ITableDataState, item: any): void
+    {
+        for (let i = 0; i < state.items.length; i++)
+        {
+            if (state.items[i] === item)
+            {
+                state.items.splice(i, 1);
+                return;
+            }
+        }
     },
 };
 

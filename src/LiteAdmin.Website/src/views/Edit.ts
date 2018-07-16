@@ -7,7 +7,7 @@ import * as ActionTypes from '@/store/ActionTypes';
 import * as ParamNames from '@/ParamNames';
 import { ITable } from '@/store/SchemaModule';
 import { IColumn } from '@/store/SchemaModule';
-import { ITableItem } from '@/store/TableDataModule';
+import { IGetTableItem } from '@/store/TableDataModule';
 import { IUpdateTableItem } from '@/store/TableDataModule';
 import { stringHelper } from '@/helpers/StringHelper';
 import FormBase from '@/views/FormBase';
@@ -17,7 +17,7 @@ export default class Edit extends FormBase
 {
     public mounted(): void
     {
-        const payload: ITableItem = {
+        const payload: IGetTableItem = {
             tableName: this.tableName,
             itemId: this.itemId,
         };

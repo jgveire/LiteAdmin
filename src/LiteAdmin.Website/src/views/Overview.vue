@@ -7,7 +7,7 @@
             <md-table-row>
                 <md-table-head v-for="(column, index) in tableSchema.columns"
                                :key="column.name"
-                               v-if="index < 6 && !column.isPrimaryKey">
+                               v-if="index < 10 && !column.isPrimaryKey">
                     {{getFriendlyName(column.name)}}
                 </md-table-head>
                 <md-table-head></md-table-head>
@@ -17,11 +17,11 @@
                           v-on:click="edit(item)">
                 <md-table-cell v-for="(column, index) in tableSchema.columns"
                                :key="column.name"
-                               v-if="index < 6 && !column.isPrimaryKey">
-                    {{item[column.name]}}
+                               v-if="index < 10 && !column.isPrimaryKey">
+                    {{getDisplayValue(item, column)}}
                 </md-table-cell>
                 <md-table-cell class="buttons">
-                    <md-button class="md-icon-button md-primary" v-on:click.stop="removeItem(item[tableKey])">
+                    <md-button class="md-icon-button md-primary" v-on:click.stop="removeItem(item[tableKey], item)">
                         <md-icon class="">delete</md-icon>
                     </md-button>
                 </md-table-cell>

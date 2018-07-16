@@ -7,6 +7,7 @@ import { IStoreState } from '@/store/index';
 import { LookupService } from '@/services';
 import { ILookup } from '@/services';
 import { ITable } from '@/store/SchemaModule';
+import { IUpdateTableItem, IAddTableItem, ITableItem } from '@/store/TableDataModule';
 import * as ActionTypes from '@/store/ActionTypes';
 import * as MutationTypes from '@/store/MutationTypes';
 
@@ -47,6 +48,48 @@ const actions: ActionTree<ILookupState, IStoreState> = {
                         }
                     });
             }
+        }
+    },
+
+    [ActionTypes.refreshLookup](context: ActionContext<ILookupState, IStoreState>, tableName: string): Promise<void>
+    {
+        return new Promise<void>((resolve, reject) =>
+        {
+            LookupService.getLookup(tableName)
+                .then((items: ILookup[]) =>
+                {
+                    const payload: IUpdateLookup = {
+                        items,
+                        name: tableName,
+                    };
+                    context.commit(MutationTypes.updateLookup, payload);
+                    resolve();
+                })
+                .catch(reject);
+        });
+    },
+
+    [ActionTypes.addTableItem](context: ActionContext<ILookupState, IStoreState>, payload: IAddTableItem): void
+    {
+        if (context.state.lookups[payload.tableName])
+        {
+            context.commit(ActionTypes.refreshLookup, payload.tableName);
+        }
+    },
+
+    [ActionTypes.updateTableItem](context: ActionContext<ILookupState, IStoreState>, payload: IUpdateTableItem): void
+    {
+        if (context.state.lookups[payload.tableName])
+        {
+            context.commit(ActionTypes.refreshLookup, payload.tableName);
+        }
+    },
+
+    [ActionTypes.deleteTableItem](context: ActionContext<ILookupState, IStoreState>, payload: ITableItem): void
+    {
+        if (context.state.lookups[payload.tableName])
+        {
+            context.commit(ActionTypes.refreshLookup, payload.tableName);
         }
     },
 };

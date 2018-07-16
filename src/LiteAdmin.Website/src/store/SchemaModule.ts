@@ -50,6 +50,16 @@ const actions: ActionTree<ISchemaState, IStoreState> = {
                 .then((tables: ITable[]) =>
                 {
                     context.commit(MutationTypes.updateTables, tables);
+                    for (const table of tables)
+                    {
+                        for (const column of table.columns)
+                        {
+                            if (column.foreignTable)
+                            {
+                                context.dispatch(ActionTypes.getLookups, table);
+                            }
+                        }
+                    }
                     resolve();
                 })
                 .catch(reject);
