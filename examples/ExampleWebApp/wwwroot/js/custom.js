@@ -4,5 +4,6 @@ window.liteAdminOptions = {
         return {
             Culture: 'en-US'
         };
-    }
+    },
+    loginUrl: '/login'
 };
