@@ -10,7 +10,7 @@ import { ITable } from '@/store/SchemaModule';
 import { IColumn } from '@/store/SchemaModule';
 import { stringHelper } from '@/helpers/StringHelper';
 import { ITableItem } from '@/store/TableDataModule';
-import { ILookup } from '@/services';
+import { ILookup } from '@/services/LookupService';
 import moment from 'moment';
 
 @Component
@@ -22,14 +22,27 @@ export default class Overview extends FormBase
 
     public selectedItem: any;
 
+    public currentTable: string | null = null;
+
     public created(): void
     {
-        this.$store.dispatch(ActionTypes.getTableItems, this.tableName);
+        this.$store.dispatch(ActionTypes.getLookups, this.tableSchema);
     }
 
     public mounted(): void
     {
-        this.$store.dispatch(ActionTypes.getLookups, this.tableSchema);
+        this.$store.dispatch(ActionTypes.getTableItems, this.tableName);
+        this.currentTable = this.tableName;
+    }
+
+    public updated(): void
+    {
+        if (this.tableName && this.currentTable !== this.tableName)
+        {
+            this.$store.dispatch(ActionTypes.getLookups, this.tableSchema);
+            this.$store.dispatch(ActionTypes.getTableItems, this.tableName);
+            this.currentTable = this.tableName;
+        }
     }
 
     public get tableName(): string
@@ -127,8 +140,7 @@ export default class Overview extends FormBase
         else if (column.dataType === 'DateTime' &&
             item[column.name])
         {
-            var date: Date = item[column.name];
-
+            const date: Date = item[column.name];
             if (date.getHours() === 0 &&
                 date.getMinutes() === 0 &&
                 date.getSeconds() === 0 &&

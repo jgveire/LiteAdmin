@@ -5,7 +5,7 @@ import { ActionContext } from 'vuex';
 import { ActionTree } from 'vuex';
 import { IStoreState } from '@/store/index';
 import { LookupService } from '@/services';
-import { ILookup } from '@/services';
+import { ILookup } from '@/services/LookupService';
 import { ITable } from '@/store/SchemaModule';
 import { IUpdateTableItem, IAddTableItem, ITableItem } from '@/store/TableDataModule';
 import * as ActionTypes from '@/store/ActionTypes';
