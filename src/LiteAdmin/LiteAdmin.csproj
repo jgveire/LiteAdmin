@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Version>0.0.7</Version>
+    <Version>0.0.10</Version>
     <Company>Veire Solutions</Company>
     <Authors>Veire Solutions</Authors>
     <Copyright>Copyright (c) 2018 Veire Solutions</Copyright>
@@ -23,6 +23,7 @@
     <None Remove="StaticFiles\browserconfig.xml" />
     <None Remove="StaticFiles\css\app.77866455.css" />
     <None Remove="StaticFiles\css\app.94045d8f.css" />
+    <None Remove="StaticFiles\css\app.acb7b0d3.css" />
     <None Remove="StaticFiles\css\chunk-vendors.c24fed64.css" />
     <None Remove="StaticFiles\favicon-16x16.png" />
     <None Remove="StaticFiles\favicon-32x32.png" />
@@ -31,6 +32,8 @@
     <None Remove="StaticFiles\index.html" />
     <None Remove="StaticFiles\js\app.03bb0e3e.js" />
     <None Remove="StaticFiles\js\app.03bb0e3e.js.map" />
+    <None Remove="StaticFiles\js\app.06eaa997.js" />
+    <None Remove="StaticFiles\js\app.06eaa997.js.map" />
     <None Remove="StaticFiles\js\app.18608413.js" />
     <None Remove="StaticFiles\js\app.18608413.js.map" />
     <None Remove="StaticFiles\js\app.27f9f21e.js" />
@@ -47,16 +50,24 @@
     <None Remove="StaticFiles\js\app.82ba5f8f.js.map" />
     <None Remove="StaticFiles\js\app.962cca0b.js" />
     <None Remove="StaticFiles\js\app.962cca0b.js.map" />
+    <None Remove="StaticFiles\js\app.d2758fc4.js" />
+    <None Remove="StaticFiles\js\app.d2758fc4.js.map" />
     <None Remove="StaticFiles\js\app.d869d566.js" />
     <None Remove="StaticFiles\js\app.d869d566.js.map" />
+    <None Remove="StaticFiles\js\app.e9065a5c.js" />
+    <None Remove="StaticFiles\js\app.e9065a5c.js.map" />
     <None Remove="StaticFiles\js\chunk-vendors.06f91d7b.js" />
     <None Remove="StaticFiles\js\chunk-vendors.06f91d7b.js.map" />
+    <None Remove="StaticFiles\js\chunk-vendors.09031c18.js" />
+    <None Remove="StaticFiles\js\chunk-vendors.09031c18.js.map" />
     <None Remove="StaticFiles\js\chunk-vendors.34f62853.js" />
     <None Remove="StaticFiles\js\chunk-vendors.34f62853.js.map" />
     <None Remove="StaticFiles\js\chunk-vendors.42200a18.js" />
     <None Remove="StaticFiles\js\chunk-vendors.42200a18.js.map" />
     <None Remove="StaticFiles\js\chunk-vendors.823b1412.js" />
     <None Remove="StaticFiles\js\chunk-vendors.823b1412.js.map" />
+    <None Remove="StaticFiles\js\es6-promise.auto.js" />
+    <None Remove="StaticFiles\js\es6-promise.auto.min.js" />
     <None Remove="StaticFiles\mstile-144x144.png" />
     <None Remove="StaticFiles\mstile-150x150.png" />
     <None Remove="StaticFiles\mstile-310x150.png" />
@@ -72,16 +83,17 @@
     <EmbeddedResource Include="StaticFiles\android-chrome-512x512.png" />
     <EmbeddedResource Include="StaticFiles\apple-touch-icon.png" />
     <EmbeddedResource Include="StaticFiles\browserconfig.xml" />
-    <EmbeddedResource Include="StaticFiles\css\app.94045d8f.css" />
+    <EmbeddedResource Include="StaticFiles\css\app.acb7b0d3.css" />
     <EmbeddedResource Include="StaticFiles\css\chunk-vendors.c24fed64.css" />
     <EmbeddedResource Include="StaticFiles\favicon-16x16.png" />
     <EmbeddedResource Include="StaticFiles\favicon-32x32.png" />
     <EmbeddedResource Include="StaticFiles\favicon.ico" />
     <EmbeddedResource Include="StaticFiles\img\logo.9c812e3e.svg" />
-    <EmbeddedResource Include="StaticFiles\js\app.18608413.js" />
-    <EmbeddedResource Include="StaticFiles\js\app.18608413.js.map" />
-    <EmbeddedResource Include="StaticFiles\js\chunk-vendors.34f62853.js" />
-    <EmbeddedResource Include="StaticFiles\js\chunk-vendors.34f62853.js.map" />
+    <EmbeddedResource Include="StaticFiles\js\app.06eaa997.js" />
+    <EmbeddedResource Include="StaticFiles\js\app.06eaa997.js.map" />
+    <EmbeddedResource Include="StaticFiles\js\chunk-vendors.09031c18.js" />
+    <EmbeddedResource Include="StaticFiles\js\chunk-vendors.09031c18.js.map" />
+    <EmbeddedResource Include="StaticFiles\js\es6-promise.auto.min.js" />
     <EmbeddedResource Include="StaticFiles\mstile-144x144.png" />
     <EmbeddedResource Include="StaticFiles\mstile-150x150.png" />
     <EmbeddedResource Include="StaticFiles\mstile-310x150.png" />

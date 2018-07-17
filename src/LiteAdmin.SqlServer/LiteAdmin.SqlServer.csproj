@@ -6,7 +6,7 @@
     <Company>Veire Solutions</Company>
     <Copyright>Copyright (c) 2018 Veire Solutions</Copyright>
     <Authors>Veire Solutions</Authors>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <NeutralLanguage>English (United Kingdom)</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseUrl>https://github.com/jgveire/LiteAdmin/blob/master/LICENSE</PackageLicenseUrl>
