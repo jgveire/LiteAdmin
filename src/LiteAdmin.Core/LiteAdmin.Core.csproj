@@ -9,7 +9,7 @@
     <Version>0.0.4</Version>
     <NeutralLanguage>English (United Kingdom)</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseUrl>https://github.com/jgveire/LiteAdmin/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://jgveire.github.io/LiteAdmin/License.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/jgveire/LiteAdmin</PackageProjectUrl>
     <PackageIconUrl>https://jgveire.github.io/LiteAdmin/LiteAdmin.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/jgveire/LiteAdmin</RepositoryUrl>
