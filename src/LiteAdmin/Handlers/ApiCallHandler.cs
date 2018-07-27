@@ -29,7 +29,7 @@
                 if (!Context.User.Identity.IsAuthenticated ||
                     !string.Equals(Context.User.Identity.Name, _options.Username, StringComparison.OrdinalIgnoreCase))
                 {
-                    HttpUnauthorizedResponse();
+                    HttpForbiddenResponse();
                     return;
                 }
             }
@@ -39,7 +39,7 @@
                 if (!Context.User.Identity.IsAuthenticated ||
                     !Context.User.IsInRole(_options.Role))
                 {
-                    HttpUnauthorizedResponse();
+                    HttpForbiddenResponse();
                     return;
                 }
             }

@@ -36,9 +36,9 @@
         }
 
 
-        protected void HttpUnauthorizedResponse()
+        protected void HttpForbiddenResponse()
         {
-            var statusCode = (int)HttpStatusCode.Unauthorized;
+            var statusCode = (int)HttpStatusCode.Forbidden;
             Response.StatusCode = statusCode;
         }
 
