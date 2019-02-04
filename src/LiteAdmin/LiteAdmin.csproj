@@ -8,7 +8,7 @@
     <Copyright>Copyright 2018 Veire Solutions</Copyright>
     <NeutralLanguage>English (United Kingdom)</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageTags>admin adminstration table maintenance</PackageTags>
+    <PackageTags>admin adminstration table maintenance generate database pages</PackageTags>
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/jgveire/LiteAdmin</RepositoryUrl>
     <PackageLicenseUrl>https://jgveire.github.io/LiteAdmin/License.txt</PackageLicenseUrl>
